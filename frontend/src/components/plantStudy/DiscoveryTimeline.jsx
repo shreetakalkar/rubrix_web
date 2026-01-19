@@ -6,20 +6,39 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const TIMELINE = [
-  { title: "Ancient Ayurvedic References", desc: "Referenced in early Ayurvedic traditions.", image: "/timeline/ayurveda.jpg" },
-  { title: "Classical Text Documentation", desc: "Mentioned in Charaka & Sushruta Samhitas.", image: "/timeline/texts.jpg" },
-  { title: "Folk Medicine Adoption", desc: "Used in indigenous healing practices.", image: "/timeline/folk.jpg" },
-  { title: "Scientific Validation", desc: "Modern studies validate medicinal compounds.", image: "/timeline/lab.jpg" },
-  { title: "Pharmaceutical Usage", desc: "Used in modern medicine formulations.", image: "/timeline/pharma.jpg" },
-];
+// MOCK PLANT DATA
+const plantData = {
+  amalaki: {
+    name: "Amalaki",
+    origin: "Used in the Indian subcontinent since approximately 1500 BCE (Vedic period).",
+    traditional_medicine: "Documented in Ayurveda around 1000–500 BCE in classical texts like Charaka Samhita.",
+    scientific_identification: {
+      scientific_name: "Phyllanthus emblica",
+      family: "Phyllanthaceae",
+      year_identified: 1753,
+    },
+    ayush_recognition: "Included in the Ayurvedic Pharmacopoeia of India after the formation of AYUSH in 2014.",
+    folk_usage: "Used in local folk remedies and traditional health practices for centuries.",
+  },
+};
 
-export default function DiscoveryTimeline({ plantName, onClose }) {
+export default function DiscoveryTimeline({ plantName = "Amalaki", onClose }) {
   const scrollRef = useRef(null);
   const sceneRef = useRef(null);
   const sectionsRef = useRef([]);
   const imagesRef = useRef([]);
 
+  const TIMELINE = [
+    { title: "Ancient Ayurvedic References", field: "origin", image: "/timeline/ayurveda.jpg" },
+    { title: "Classical Text Documentation", field: "traditional_medicine", image: "/timeline/texts.jpg" },
+    { title: "Folk Medicine Adoption", field: "folk_usage", image: "/timeline/folk.jpg" },
+    { title: "Scientific Validation", field: "scientific_identification", image: "/timeline/lab.jpg" },
+    { title: "Pharmaceutical / AYUSH Usage", field: "ayush_recognition", image: "/timeline/pharma.jpg" },
+  ];
+
+  const data = plantData[plantName.toLowerCase()] || {};
+
+  // ESC to close
   useEffect(() => {
     const handler = (e) => e.key === "Escape" && onClose();
     window.addEventListener("keydown", handler);
@@ -30,18 +49,14 @@ export default function DiscoveryTimeline({ plantName, onClose }) {
     if (!scrollRef.current || !sceneRef.current) return;
 
     const ctx = gsap.context(() => {
-      ScrollTrigger.defaults({
-        scroller: scrollRef.current,
-      });
+      ScrollTrigger.defaults({ scroller: scrollRef.current });
 
-      const totalScroll = TIMELINE.length * window.innerHeight; // scroll height proportional to viewport
+      const totalScroll = TIMELINE.length * window.innerHeight;
       sceneRef.current.style.height = `${totalScroll}px`;
 
-      // initial states
       imagesRef.current.forEach((img, i) => gsap.set(img, { opacity: i === 0 ? 1 : 0, scale: 1.05 }));
       sectionsRef.current.forEach((sec, i) => gsap.set(sec, { opacity: i === 0 ? 1 : 0, y: 40 }));
 
-      // create a single ScrollTrigger that pins the scene
       ScrollTrigger.create({
         trigger: sceneRef.current,
         start: "top top",
@@ -50,53 +65,30 @@ export default function DiscoveryTimeline({ plantName, onClose }) {
         scrub: 0.5,
       });
 
-      // each card scroll range
       TIMELINE.forEach((_, i) => {
         const sectionStart = (i / TIMELINE.length) * totalScroll;
         const sectionEnd = ((i + 1) / TIMELINE.length) * totalScroll;
 
-        // fade in current
         gsap.to(imagesRef.current[i], {
           opacity: 1,
           scale: 1,
-          scrollTrigger: {
-            trigger: sceneRef.current,
-            start: sectionStart,
-            end: sectionEnd,
-            scrub: 0.5,
-          },
+          scrollTrigger: { trigger: sceneRef.current, start: sectionStart, end: sectionEnd, scrub: 0.5 },
         });
 
         gsap.to(sectionsRef.current[i], {
           opacity: 1,
           y: 0,
-          scrollTrigger: {
-            trigger: sceneRef.current,
-            start: sectionStart,
-            end: sectionEnd,
-            scrub: 0.5,
-          },
+          scrollTrigger: { trigger: sceneRef.current, start: sectionStart, end: sectionEnd, scrub: 0.5 },
         });
 
-        // fade out previous
         if (i > 0) {
           gsap.to(imagesRef.current[i - 1], {
             opacity: 0,
-            scrollTrigger: {
-              trigger: sceneRef.current,
-              start: sectionStart,
-              end: sectionEnd,
-              scrub: 0.5,
-            },
+            scrollTrigger: { trigger: sceneRef.current, start: sectionStart, end: sectionEnd, scrub: 0.5 },
           });
           gsap.to(sectionsRef.current[i - 1], {
             opacity: 0,
-            scrollTrigger: {
-              trigger: sceneRef.current,
-              start: sectionStart,
-              end: sectionEnd,
-              scrub: 0.5,
-            },
+            scrollTrigger: { trigger: sceneRef.current, start: sectionStart, end: sectionEnd, scrub: 0.5 },
           });
         }
       });
@@ -106,14 +98,14 @@ export default function DiscoveryTimeline({ plantName, onClose }) {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-[999] backdrop-blur-md chalk-text">
+    <div className="fixed inset-0 z-[999] backdrop-blur-md ">
       {/* scroll container */}
       <div ref={scrollRef} className="absolute inset-0 overflow-y-scroll">
         <div ref={sceneRef} className="relative" />
 
         {/* fixed modal */}
         <div className="fixed inset-0 flex items-center justify-center pointer-events-none">
-          <div className="relative w-[85%] max-w-6xl h-[80vh] rounded-3xl bg-green-900/90 border border-green-700 shadow-2xl overflow-hidden pointer-events-auto">
+          <div className="relative w-[75%] max-w-6xl h-[70vh] rounded-3xl bg-gradient-to-br from-green-900 to-emerald-950 border border-green-700 shadow-2xl overflow-hidden pointer-events-auto">
 
             {/* close */}
             <button
@@ -126,7 +118,7 @@ export default function DiscoveryTimeline({ plantName, onClose }) {
             {/* header */}
             <div className="absolute top-0 left-0 w-full z-40 p-6 bg-gradient-to-b from-black/70 to-transparent">
               <h1 className="text-3xl font-bold text-green-200">Discovery Timeline</h1>
-              <p className="text-green-300 text-sm">Evolution & discovery of {plantName}</p>
+              <p className="text-green-300 text-sm">Evolution & discovery of {data.name || plantName}</p>
             </div>
 
             {/* content */}
@@ -134,26 +126,42 @@ export default function DiscoveryTimeline({ plantName, onClose }) {
 
               {/* text */}
               <div className="relative flex items-center">
-                {TIMELINE.map((item, i) => (
-                  <div
-                    key={i}
-                    ref={(el) => (sectionsRef.current[i] = el)}
-                    className="absolute p-6 rounded-2xl bg-white/50 border border-green-700 text-green-900 shadow"
-                  >
-                    <h3 className="text-xl font-semibold mb-2">{i + 1}. {item.title}</h3>
-                    <p className="text-green-300 text-sm">{item.desc}</p>
-                  </div>
-                ))}
+                {TIMELINE.map((step, i) => {
+                  let content;
+                  if (step.field === "scientific_identification" && data[step.field]) {
+                    const sci = data[step.field];
+                    content = (
+                      <>
+                        <p>Scientific Name: {sci.scientific_name}</p>
+                        <p>Family: {sci.family}</p>
+                        <p>Year Identified: {sci.year_identified}</p>
+                      </>
+                    );
+                  } else {
+                    content = <p>{data[step.field]}</p>;
+                  }
+
+                  return (
+                    <div
+                      key={i}
+                      ref={(el) => (sectionsRef.current[i] = el)}
+                      className="absolute p-6 rounded-2xl bg-white/30 border border-green-700 text-green-50 shadow-lg"
+                    >
+                      <h3 className="text-xl font-semibold mb-2 text-green-200">{i + 1}. {step.title}</h3>
+                      <div className="text-green-100 text-sm">{content}</div>
+                    </div>
+                  );
+                })}
               </div>
 
               {/* images */}
               <div className="relative flex items-center justify-center">
-                {TIMELINE.map((item, i) => (
+                {TIMELINE.map((step, i) => (
                   <img
                     key={i}
                     ref={(el) => (imagesRef.current[i] = el)}
-                    src={item.image}
-                    alt={item.title}
+                    src={step.image}
+                    alt={step.title}
                     className="absolute w-full h-[70%] object-cover rounded-2xl shadow-xl"
                   />
                 ))}
