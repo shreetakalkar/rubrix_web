@@ -121,7 +121,7 @@ export default function PlantBuilderGame() {
         {/* BOARD */}
         <div className="relative flex gap-16 mt-3">
           {/* LEFT */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6 chalk-subtitle">
             {["roots", "stem"].map((part) => (
               <DropSlot
                 key={part}
@@ -142,7 +142,7 @@ export default function PlantBuilderGame() {
           </div>
 
           {/* RIGHT */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6 chalk-subtitle">
             {["leaves", "flower"].map((part) => (
               <DropSlot
                 key={part}
@@ -155,7 +155,7 @@ export default function PlantBuilderGame() {
         </div>
 
         {/* OPTIONS */}
-        <div className="w-full max-w-6xl mb-20 bg-black/40 -mt-20 rounded-2xl p-6">
+        <div className="w-full max-w-6xl mb-20 bg-black/40 -mt-20 rounded-2xl p-6 chalk-text">
           <div className="grid grid-cols-4 gap-8">
             {Object.entries(options).map(([part, imgs]) => (
               <div key={part}>
@@ -186,7 +186,7 @@ export default function PlantBuilderGame() {
         <div className="absolute inset-0 z-50 bg-black/90 flex items-center justify-center">
           <div className="bg-green-900 p-10 rounded-2xl text-center space-y-6">
             <h1 className="text-4xl font-bold text-green-300">
-              🌱 Plant Built!
+              🌱 Plant Built! & Added to Your Botanical Garden
             </h1>
             <img
               src={plant.full}

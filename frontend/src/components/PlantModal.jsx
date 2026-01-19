@@ -62,7 +62,7 @@ export default function PlantModal({ plant, onClose }) {
         </button>
 
         {/* SCROLLABLE CONTENT */}
-        <div className="overflow-y-auto px-6 py-6 space-y-6 scrollbar-thin scrollbar-thumb-green-700">
+        <div className="overflow-y-auto px-6 py-6 space-y-6 scrollbar-thin scrollbar-hidden">
 
           {/* TOP SECTION */}
           <div className="flex flex-col sm:flex-row gap-6">

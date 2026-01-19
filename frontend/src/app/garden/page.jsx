@@ -9,6 +9,13 @@ export default function GamesPage() {
     setShelf(stored);
   }, []);
 
+  // Function to remove a plant by index
+  const removePlant = (index) => {
+    const updated = shelf.filter((_, i) => i !== index); // remove the plant
+    setShelf(updated); // update state
+    localStorage.setItem("plantShelf", JSON.stringify(updated)); // update localStorage
+  };
+
   return (
     <main className="relative h-screen w-full overflow-hidden">
       {/* Floating Leaves */}
@@ -39,16 +46,22 @@ export default function GamesPage() {
           {shelf.map((plant, i) => (
             <div
               key={i}
-              className="bg-transparent rounded-xl p-6 -mt-38 chalk-text text-center"
+              className="bg-transparent rounded-xl p-6 -mt-38 chalk-text text-center relative"
             >
               <img
                 src={plant.image}
                 className="h-45 mx-auto drop-shadow-lg"
                 alt={plant.name}
               />
-              <h3 className=" text-xl text-green-300 font-bold">
-                {plant.name}
-              </h3>
+              <h3 className="text-xl text-green-300 font-bold">{plant.name}</h3>
+
+              {/* REMOVE BUTTON */}
+              <button
+                onClick={() => removePlant(i)}
+                className="absolute top-2 right-2 text-red-500 font-bold hover:text-red-400"
+              >
+                ✕
+              </button>
             </div>
           ))}
 
