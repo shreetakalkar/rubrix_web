@@ -19,12 +19,12 @@ export default function RootLayout({ children }) {
         </div>
 
         {/* Remove this background, timeline will handle backgrounds */}
-        {/*
+        
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('/bg.jpeg')" }}
         />
-        */}
+       
 
         {/* Dark overlay stays if you want */}
         <div className="absolute inset-0 bg-black/20" />

@@ -11,12 +11,9 @@
   "dependencies": {
     "@react-three/drei": "^10.7.7",
     "firebase": "^12.8.0",
-<<<<<<< Updated upstream
-    "gsap": "^3.14.2",
-=======
     "framer-motion": "^12.27.1",
+    "gsap": "^3.14.2",
     "lucide-react": "^0.562.0",
->>>>>>> Stashed changes
     "next": "16.1.3",
     "react": "19.2.3",
     "react-dom": "19.2.3",

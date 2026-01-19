@@ -43,6 +43,13 @@ export default function Home() {
         <div className="flex gap-6 justify-center mb-40 chalk-text">
 
           <Card
+            title="History of Ayurveda"
+            subtitle="Timeline of ayurveda"
+            icon="/timeline.png"
+            link="/timeline"
+          />
+
+          <Card
             title="Explore Plant Library"
             subtitle="Browse Herbal Knowledge"
             icon="/library.png"

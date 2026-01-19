@@ -124,8 +124,8 @@ export default function AyurvedaTimeline() {
         {ayurvedaTimeline.map((item, i) => (
           <div key={i} className="flex flex-col items-center">
             <div
-              className={`w-4 h-4 rounded-full transition-colors duration-300 ${
-                i <= activeIndex ? "bg-yellow-400" : "bg-gray-400/40"
+              className={`w-4 h-4 rounded-full transition-colors duration-300 border-2 border-amber-700 ${
+                i <= activeIndex ? "bg-yellow-300" : "bg-gray-400/40"
               }`}
             />
             <span className="text-xs text-white mt-1">{item.year}</span>
@@ -135,7 +135,7 @@ export default function AyurvedaTimeline() {
 
       {/* Title */}
       <div className="absolute top-32 w-full text-center z-20">
-        <h1 className="text-5xl md:text-6xl font-bold text-white">
+        <h1 className="text-5xl md:text-6xl font-bold text-white -mt-5 chalk-text">
           History of Ayurveda
         </h1>
       </div>
@@ -177,19 +177,19 @@ export default function AyurvedaTimeline() {
 
           {/* Metadata */}
           <p className="text-gray-300 mt-4">
-            <strong className="text-yellow-700">Location:</strong>{" "}
+            <strong className="text-yellow-300">Location:</strong>{" "}
             {item.location}
           </p>
 
           <p className="text-gray-300 mt-1">
-            <strong className="text-yellow-700">Key Figures:</strong>{" "}
+            <strong className="text-yellow-300">Key Figures:</strong>{" "}
             {item.keyFigures.join(", ")}
           </p>
 
           {/* Highlighted Important Section */}
           <div className="mt-6 p-4 rounded-xl bg-yellow-800 border border-yellow-700/30 backdrop-blur-sm">
             <p className="text-gray-200 text-sm leading-relaxed">
-              <strong className="text-yellow-400">Significance:</strong>{" "}
+              <strong className="text-yellow-300">Significance:</strong>{" "}
               {item.significance}
             </p>
           </div>
