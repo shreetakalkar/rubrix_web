@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../config/firebase";
-import PlantModal from "@/components/PlantModal";
+import PlantModal from "@/src/components/PlantModal";
 
 export default function PlantLibrary() {
   const [plants, setPlants] = useState([]);

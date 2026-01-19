@@ -1,6 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
+// Pre-generate leaf positions so they stay stable
+const leafPositions = [...Array(6)].map(() => Math.random() * 100);
+
 export default function Home() {
   return (
     <main className="relative h-screen w-full overflow-hidden bg-black">
@@ -16,17 +19,17 @@ export default function Home() {
 
       {/* Floating Leaves */}
       <div className="absolute inset-0 z-10 pointer-events-none">
-        {[...Array(6)].map((_, i) => (
+        {leafPositions.map((pos, i) => (
           <span
             key={i}
             className={`leaf leaf-${i}`}
-            style={{ left: `${Math.random() * 100}%` }}
+            style={{ left: `${pos}%` }}
           />
         ))}
       </div>
 
       {/* Blackboard Heading */}
-      <div className="text-center mt-60 relative z-20">
+      <div className="text-center mt-40 md:mt-60 relative z-20">
         <h1 className="text-5xl md:text-6xl font-bold text-white drop-shadow-lg chalk-text">
           Virtual Botanical Garden
         </h1>
@@ -37,7 +40,7 @@ export default function Home() {
 
       {/* Bottom Center Cards */}
       <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-20">
-        <div className="flex gap-6  justify-center">
+        <div className="flex gap-6 justify-center mb-30">
 
           <Card
             title="Explore Plant Library"
@@ -74,10 +77,12 @@ function Card({ title, subtitle, icon, link }) {
       href={link}
       className="w-64 p-5 rounded-2xl bg-white/30 backdrop-blur-sm shadow-xl border border-white/70 cursor-pointer hover:scale-105 transition-transform"
     >
-      <img
+      <Image
         src={icon}
         alt={title}
-        className="w-24 h-16 mx-auto mb-4"
+        width={96}
+        height={64}
+        className="mx-auto mb-4"
       />
       <h3 className="text-lg font-semibold text-center text-gray-800">
         {title}
