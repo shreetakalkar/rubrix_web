@@ -72,7 +72,7 @@ export default function HerbalQuizPage() {
 
       {/* Cards */}
       <div className="relative z-10 flex h-full items-center justify-center">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 mb-[400px]">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 mb-[400px] chalk-text">
           {quizzes.map((quiz) => (
             <QuizCard
               key={quiz.id}

@@ -31,7 +31,7 @@ export default function OwlDialogue() {
 
   return (
     <div className="absolute bottom-32 right-28 z-50 max-w-xs animate-fade-in">
-      <div className="relative bg-white text-black px-4 py-3 rounded-xl shadow-lg text-sm chalk-text">
+      <div className="relative bg-white text-black px-4 py-3 rounded-4xl shadow-lg text-sm chalk-text">
         {message}
         <span className="absolute -bottom-2 right-6 w-4 h-4 bg-white rotate-45"></span>
       </div>

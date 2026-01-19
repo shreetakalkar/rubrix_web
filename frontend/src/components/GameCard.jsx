@@ -1,43 +1,39 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function GameCard({ title, subtitle, buttonText, href, icon }) {
+export default function GameCard({ title, subtitle, href, icon }) {
   return (
-    <div className="w-72 rounded-2xl bg-white/40 shadow-lg border border-[#e5e1d8] p-6 text-center">
-      
-      {/* Icon/Image */}
-      <div className="mx-auto mb-4 h-16 w-16 rounded-full bg-[#d8e0c8]">
+    <Link
+      href={href}
+      className="w-64 p-5 rounded-2xl bg-white/30 backdrop-blur-sm shadow-xl border border-white/70 cursor-pointer
+                 hover:scale-105 transition-transform duration-300"
+    >
+      {/* Icon */}
+      <div className="flex justify-center mb-4 rounded-full">
         {icon ? (
           <Image
             src={icon}
             alt={title}
-            width={64}
-            height={64}
-            className="rounded-full object-contain"
+            width={82}
+            height={82}
+            className="object-contain rounded-full bg-green-200 max-w-20 max-h-20"
           />
         ) : (
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#d8e0c8] text-3xl">
+          <div className="max-h-20 max-w-20 flex items-center justify-center rounded-4xl bg-[#d8e0c8] text-3xl">
             ?
           </div>
         )}
       </div>
 
       {/* Title */}
-      <h3 className="text-xl chalk-text text-[#232d12] font-bold">
+      <h3 className="text-lg font-bold text-center chalk-text text-[#232d12]">
         {title}
       </h3>
 
       {/* Subtitle */}
-      <p className="mt-2 text-sm chalk-subtitle text-[#3c4b24] font-bold">
+      <p className="mt-1 text-sm text-center chalk-subtitle text-[#3c4b24]">
         {subtitle}
       </p>
-
-      {/* Button */}
-      <Link href={href}>
-        <button className="mt-5 w-full rounded-lg bg-[#b9c59a] py-2 text-sm font-medium text-[#2f3a22] hover:bg-[#aab88b] transition">
-          {buttonText}
-        </button>
-      </Link>
-    </div>
+    </Link>
   );
 }
