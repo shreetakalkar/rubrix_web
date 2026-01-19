@@ -22,7 +22,7 @@ export default function Home() {
       <div className="absolute inset-0 bg-black/20" />
 
       {/* Blackboard Heading */}
-      <div className="absolute top-[28%] left-1/2 -translate-x-1/2 z-10 text-center">
+      <div className="text-center mt-60">
         <h1 className="chalk-text text-5xl md:text-6xl">
           Virtual Botanical Garden
         </h1>
@@ -61,34 +61,26 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Owl Mascot */}
-      <img
-        src="/owl.png"
-        alt="Owl Mascot"
-        className="absolute bottom-6 right-6 w-40 z-20 animate-bounce-slow"
-      />
-    </main>
+    </div>
   );
 }
 
 /* Card Component */
-function Card({ title, subtitle, icon }) {
+function Card({ title, subtitle, icon, link }) {
   return (
-    <div className="w-64 p-5 rounded-2xl bg-white/30 backdrop-blur-sm shadow-xl border border-white/70 cursor-pointer hover:scale-105 transition-transform">
-
+    <Link href={link} className="w-64 p-5 rounded-2xl bg-white/30 backdrop-blur-sm shadow-xl border border-white/70 cursor-pointer hover:scale-105 transition-transform">
       <img
         src={icon}
         alt={title}
         className="w-24 h-16 mx-auto mb-4"
       />
-
       <h3 className="text-lg font-semibold text-center text-gray-800">
         {title}
       </h3>
-
       <p className="text-sm text-center text-gray-600 mt-1">
         {subtitle}
       </p>
-    </div>
+    </Link>
   );
 }
+
