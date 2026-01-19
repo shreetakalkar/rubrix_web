@@ -40,7 +40,7 @@ export default function Home() {
 
       {/* Bottom Center Cards */}
       <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-20">
-        <div className="flex gap-6 justify-center mb-30">
+        <div className="flex gap-6 justify-center mb-40">
 
           <Card
             title="Explore Plant Library"
