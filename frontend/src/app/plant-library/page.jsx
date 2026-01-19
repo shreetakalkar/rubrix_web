@@ -70,7 +70,7 @@ export default function PlantLibrary() {
             <div
               key={plant.id}
               onClick={() => setSelectedPlant(plant)}
-              className="cursor-pointer bg-white/20 rounded-3xl backdrop-blur-md border-amber-900 border-2 shadow-md overflow-hidden relative hover:scale-105 transition"
+              className="cursor-pointer bg-white/20 rounded-3xl backdrop-blur-md border-yellow-800 border-2 shadow-md overflow-hidden relative hover:scale-105 transition"
             >
               <Image
                 src={plant.photos?.[0] || "/placeholder.png"}
@@ -81,7 +81,7 @@ export default function PlantLibrary() {
                 unoptimized
               />
 
-              <div className="p-4 text-center font-medium bg-amber-900 text-white">
+              <div className="p-4 text-center font-medium bg-yellow-800 text-white">
                 {plant.plant_name}
               </div>
 

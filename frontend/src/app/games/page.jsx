@@ -1,4 +1,4 @@
-import GameCard from "@/components/GameCard";
+import GameCard from "@/src/components/GameCard";
 
 export default function GamesPage() {
   return (
