@@ -2,10 +2,14 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import NotesPanel from "@/src/components/plantStudy/NotesPanel";
+import StudyListManager from "@/src/components/plantStudy/StudyListManager";
 
 export default function PlantModal({ plant, onClose }) {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [voices, setVoices] = useState([]);
+  const [showNotes, setShowNotes] = useState(false);
+  const [showStudyList, setShowStudyList] = useState(false);
 
   useEffect(() => {
     const loadVoices = () => {
@@ -64,18 +68,29 @@ export default function PlantModal({ plant, onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
       
-      <div className="relative w-[90%] max-w-3xl rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 p-6 shadow-2xl border border-gray-700">
+      <div className="relative w-[90%] max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 p-6 shadow-2xl border border-gray-700 scrollbar-hide">
+
+        <style jsx>{`
+          .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+          }
+
+          .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+          }
+        `}</style>
 
         <button
           onClick={onClose}
-          className="absolute right-4 top-4 rounded-full bg-red-500 hover:bg-red-600 px-3 py-1 text-lg shadow-lg text-white transition-colors z-10"
+          className="sticky top-0 left-full ml-2 float-right rounded-full bg-red-500 hover:bg-red-600 px-3 py-1 text-lg shadow-lg text-white transition-colors z-50 -mt-2"
         >
           ✕
         </button>
 
-        <div className="flex flex-col sm:flex-row gap-6 mb-6 mt-8">
+        <div className="flex flex-col sm:flex-row gap-6 mb-6 mt-2">
           <Image
             src={plant.photos?.[0] || "/placeholder.png"}
             alt={plant.plant_name}
@@ -107,7 +122,7 @@ export default function PlantModal({ plant, onClose }) {
           </div>
         </div>
 
-        <div className="overflow-hidden rounded-xl border border-gray-700 shadow-lg">
+        <div className="overflow-hidden rounded-xl border border-gray-700 shadow-lg mb-6">
           <table className="w-full text-sm">
             <tbody className="divide-y divide-gray-700">
 
@@ -146,6 +161,40 @@ export default function PlantModal({ plant, onClose }) {
             </tbody>
           </table>
         </div>
+
+        <div className="flex gap-3 mb-4">
+          <button
+            onClick={() => {
+              setShowNotes(!showNotes);
+              if (!showNotes) setShowStudyList(false);
+            }}
+            className={`flex-1 rounded-lg px-4 py-2 font-medium transition ${
+              showNotes
+                ? 'bg-green-600 text-white'
+                : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+            }`}
+          >
+            📝 {showNotes ? 'Hide Notes' : 'Show Notes'}
+          </button>
+
+          <button
+            onClick={() => {
+              setShowStudyList(!showStudyList);
+              if (!showStudyList) setShowNotes(false);
+            }}
+            className={`flex-1 rounded-lg px-4 py-2 font-medium transition ${
+              showStudyList
+                ? 'bg-indigo-600 text-white'
+                : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+            }`}
+          >
+            📚 {showStudyList ? 'Hide Study List' : 'Show Study List'}
+          </button>
+        </div>
+
+        {showNotes && <NotesPanel plantId={plant.id} />}
+        
+        {showStudyList && <StudyListManager plantId={plant.id} />}
       </div>
     </div>
   );
