@@ -21,7 +21,7 @@ export default function StudyListManager({ plantId }) {
           value={listName}
           onChange={(e) => setListName(e.target.value)}
           placeholder="Eg: Exam Plants"
-          className="flex-1 rounded-lg bg-gray-900 border border-gray-700 px-3 py-2 text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="flex-1 rounded-lg bg-green-900 border border-gray-700 px-3 py-2 text-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500"
         />
 
         <button
@@ -30,7 +30,7 @@ export default function StudyListManager({ plantId }) {
             addToList(listName.trim(), plantId);
             setListName("");
           }}
-          className="rounded-lg bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700 transition"
+          className="rounded-lg bg-green-600 px-4 py-2 text-white hover:bg-green-700 transition"
         >
           Add
         </button>
@@ -41,7 +41,7 @@ export default function StudyListManager({ plantId }) {
           {plantLists.map(name => (
             <div 
               key={name}
-              className="flex items-center justify-between bg-gray-800 rounded-lg px-3 py-2"
+              className="flex items-center justify-between bg-green-800 rounded-lg px-3 py-2"
             >
               <span className="text-sm text-gray-300">📚 {name}</span>
               <button

@@ -1,4 +1,5 @@
-import "./globals.css"; // your Tailwind + global styles
+import "./globals.css";
+import OwlDialogue from "../components/OwlDialogue";
 
 export const metadata = {
   title: "Virtual Botanical Garden",
@@ -11,7 +12,7 @@ export default function RootLayout({ children }) {
       <body className="relative h-screen w-full overflow-hidden">
 
         {/* Floating Leaves */}
-        <div className="absolute inset-0 z-5 pointer-events-none">
+        <div className="absolute inset-0 z-5 pointer-events-none w-full">
           {[...Array(6)].map((_, i) => (
             <span key={i} className={`leaf leaf-${i}`} />
           ))}
@@ -23,7 +24,7 @@ export default function RootLayout({ children }) {
           style={{ backgroundImage: "url('/bg.jpeg')" }}
         />
 
-        {/* Dark overlay for contrast */}
+        {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/20" />
 
         {/* Owl Mascot */}
@@ -32,6 +33,9 @@ export default function RootLayout({ children }) {
           alt="Owl Mascot"
           className="absolute bottom-6 right-6 w-40 z-40 animate-bounce-slow"
         />
+
+        {/* Owl Dialogue */}
+        <OwlDialogue />
 
         {/* Page Content */}
         <div className="relative z-20">{children}</div>

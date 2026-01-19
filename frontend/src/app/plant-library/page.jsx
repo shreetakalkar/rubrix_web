@@ -87,15 +87,15 @@ export default function PlantLibrary() {
             placeholder="Search plants..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full max-w-md px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400"
+            className="w-full max-w-lg bg-white/30 px-4 py-2 rounded-3xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400"
           />
 
           <button
             onClick={() => setShowBookmarkedOnly((prev) => !prev)}
-            className={`px-4 py-2 rounded-xl font-medium transition ${
+            className={`px-4 py-2 rounded-3xl font-medium transition ${
               showBookmarkedOnly
                 ? "bg-yellow-500 text-black"
-                : "bg-gray-700 text-white hover:bg-gray-600"
+                : "bg-yellow-800 text-white hover:bg-yellow-600"
             }`}
           >
             {showBookmarkedOnly ? "Showing Bookmarked" : "All Plants"}

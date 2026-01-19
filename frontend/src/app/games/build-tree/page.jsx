@@ -1,234 +1,236 @@
 "use client";
 import { useState } from "react";
 
-export default function GamesPage() {
+/* =======================
+   PLANT CONFIG
+======================= */
+const plant = {
+  name: "Rose",
+  base: "/plants/base.png", // ✅ common base for all plants
+  full: "/plants/rose/full.png",
+  parts: {
+    roots: "/plants/rose/roots.png",
+    stem: "/plants/rose/stem.png",
+    leaves: "/plants/rose/leaves.png",
+    flower: "/plants/rose/flower.png",
+  },
+};
+
+const options = {
+  roots: [
+    "/plants/rose/roots.png",
+    "/plants/cactus/roots.png",
+    "/plants/sunflower/roots.png",
+  ],
+  stem: [
+    "/plants/rose/stem.png",
+    "/plants/cactus/stem.png",
+    "/plants/sunflower/stem.png",
+  ],
+  leaves: [
+    "/plants/rose/leaves.png",
+    "/plants/cactus/leaves.png",
+    "/plants/sunflower/leaves.png",
+  ],
+  flower: [
+    "/plants/rose/flower.png",
+    "/plants/cactus/flower.png",
+    "/plants/sunflower/flower.png",
+
+  ],
+};
+
+/* =======================
+   MAIN COMPONENT
+======================= */
+export default function PlantBuilderGame() {
   const [placed, setPlaced] = useState({
-    roots: false,
-    plant: false,
-    leaves: false,
-    flower: false,
+    roots: null,
+    stem: null,
+    leaves: null,
+    flower: null,
   });
 
-  const [showComplete, setShowComplete] = useState(false);
-  const [showGarden, setShowGarden] = useState(false);
+  const [completed, setCompleted] = useState(false);
 
-  const parts = [
-    { id: "roots", img: "/roots.png", zone: "bottom" },
-    { id: "plant", img: "/potted_plant.png", zone: "middle" },
-    { id: "leaves", img: "/leaves.png", zone: "top" },
-    { id: "flower", img: "/flowering_plant.png", zone: "flower" },
-  ];
-
-  const onDragStart = (e, id) => {
-    e.dataTransfer.setData("id", id);
+  const onDragStart = (e, img) => {
+    e.dataTransfer.setData("img", img);
   };
 
-  const allowDrop = (e) => e.preventDefault();
-
-  const onDrop = (e, zone) => {
+  const onDrop = (e, part) => {
     e.preventDefault();
-    const id = e.dataTransfer.getData("id");
-    const part = parts.find((p) => p.id === id);
+    const img = e.dataTransfer.getData("img");
 
-    if (part && part.zone === zone) {
+    if (img === plant.parts[part]) {
       setPlaced((prev) => {
-        const newPlaced = { ...prev, [id]: true };
-        
-        // Check if all parts are placed
-        if (Object.values(newPlaced).every((v) => v === true)) {
-          setTimeout(() => setShowComplete(true), 500);
+        const updated = { ...prev, [part]: img };
+        if (Object.values(updated).every(Boolean)) {
+          setTimeout(() => setCompleted(true), 400);
         }
-        
-        return newPlaced;
+        return updated;
       });
     }
   };
 
-  const placeInGarden = () => {
-    setShowGarden(true);
-  };
-
   const resetGame = () => {
     setPlaced({
-      roots: false,
-      plant: false,
-      leaves: false,
-      flower: false,
+      roots: null,
+      stem: null,
+      leaves: null,
+      flower: null,
     });
-    setShowComplete(false);
-    setShowGarden(false);
+    setCompleted(false);
   };
 
-  const allPlaced = Object.values(placed).every((v) => v === true);
-
   return (
-    <main className="relative h-screen w-full overflow-hidden">
+    <main className="relative min-h-screen overflow-hidden">
+      {/* Background */}
       <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/build-bg.png')" }}
+        style={{ backgroundImage: `url('/build-bg.png')` }}
       />
-      <div className="absolute inset-0 bg-black/30" />
+      <div className="absolute inset-0 bg-black/40" />
 
-      {showGarden && (
-        <div className="absolute inset-0 z-50 bg-black/90 flex flex-col items-center justify-center">
-          <div className="text-center space-y-8">
-            <h1 className="text-5xl font-bold text-green-400 animate-pulse">
-               Tree Complete!
-            </h1>
-            <div className="relative">
-              <img
-                src="/plant.png"
-                className="h-96 object-contain mx-auto animate-bounce"
-                alt="Complete Plant"
+      {/* GAME AREA */}
+      <div className="relative z-10 flex flex-col items-center min-h-screen p-4">
+
+        {/* TITLE */}
+        <h1 className="text-4xl md:text-5xl font-bold text-white chalk-text mt-25 drop-shadow-lg">
+          Build the Plant 🌱
+        </h1>
+
+        {/* PLANT NAME */}
+        <p className="mt-2 text-lg text-green-200 font-semibold tracking-wide chalk-text">
+          {plant.name}
+        </p>
+
+        {/* CENTER BOARD */}
+        <div className="relative flex gap-16  -mb-30">
+
+          {/* LEFT SLOTS */}
+          <div className="flex flex-col gap-6">
+            {["roots", "stem"].map((part) => (
+              <DropSlot
+                key={part}
+                part={part}
+                placed={placed[part]}
+                onDrop={onDrop}
               />
-            </div>
-            <p className="text-2xl text-white">
-              Plant placed in Botanical Garden! 
-            </p>
+            ))}
+          </div>
+
+          {/* BASE */}
+          <div className="relative w-[300px] h-[450px] bottom-20 flex items-center justify-center">
+            <img
+              src={plant.base}
+              className="absolute h-full object-contain opacity-90"
+              alt="Plant base"
+            />
+
+            
+          </div>
+
+          {/* RIGHT SLOTS */}
+          <div className="flex flex-col gap-6 ">
+            {["leaves", "flower"].map((part) => (
+              <DropSlot
+                key={part}
+                part={part}
+                placed={placed[part]}
+                onDrop={onDrop}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* OPTIONS / TRAY AREA */}
+        <div className="w-full max-w-6xl mb-20 bottom-50 bg-black/30 backdrop-blur-md rounded-2xl p-6 border border-white/10">
+          <div className="grid grid-cols-4 gap-8">
+            {Object.entries(options).map(([part, imgs]) => (
+              <div key={part}>
+                <h3 className="text-white font-bold text-center mb-4 capitalize">
+                  {part}
+                </h3>
+
+                {/* TRAY */}
+                <div className="flex justify-center gap-4 bg-black/40 rounded-xl p-4 border border-white/10 shadow-inner">
+                  {imgs.map((img) => (
+                    <div
+                      key={img}
+                      className="bg-green-900/30 rounded-lg p-2 hover:bg-green-800/40 transition"
+                    >
+                      <img
+                        src={img}
+                        draggable
+                        onDragStart={(e) => onDragStart(e, img)}
+                        className="min-w-13 h-16 cursor-grab hover:scale-110 transition"
+                        alt={part}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* COMPLETION POPUP */}
+      {completed && (
+        <div className="absolute inset-0 z-50 bg-black/90 flex items-center justify-center">
+          <div className="bg-green-900 p-10 rounded-2xl text-center space-y-6 animate-fade">
+            <h1 className="text-4xl font-bold text-green-300">
+              🌱 Plant Built!
+            </h1>
+            <img
+              src={plant.full}
+              className="h-64 mx-auto animate-grow"
+              alt="Completed Plant"
+            />
             <button
               onClick={resetGame}
-              className="mt-8 px-8 py-3 bg-green-600 hover:bg-green-500 text-white font-bold text-lg rounded-lg"
+              className="px-8 py-3 bg-green-600 hover:bg-green-500 text-white font-bold rounded-lg"
             >
-              Build Another Plant
+              Build Again
             </button>
           </div>
         </div>
       )}
 
-      <div className="relative z-10 h-full w-full flex flex-col items-center justify-between p-6">
-
-        <div className="relative w-[600px] h-[600px] mt-4">
-          {/* <img
-            src="/board.png"
-            className="absolute inset-0 w-full h-full object-contain"
-            alt="Board"
-          /> */}
-
-          <div className="absolute inset-0 flex flex-col justify-center gap-4 px-20 py-16">
-
-            <div
-              onDragOver={allowDrop}
-              onDrop={(e) => onDrop(e, "flower")}
-              className="h-24 flex items-center justify-center border-2 border-dashed border-green-400/50 rounded-lg"
-            >
-              {placed.flower && (
-                <img src="/flowering_plant.png" className="h-20 object-contain" />
-              )}
-            </div>
-
-            <div
-              onDragOver={allowDrop}
-              onDrop={(e) => onDrop(e, "top")}
-              className="h-24 flex items-center justify-center border-2 border-dashed border-green-400/50 rounded-lg"
-            >
-              {placed.leaves && (
-                <img src="/leaves.png" className="h-20 object-contain" />
-              )}
-            </div>
-
-            <div
-              onDragOver={allowDrop}
-              onDrop={(e) => onDrop(e, "middle")}
-              className="h-32 flex items-center justify-center border-2 border-dashed border-green-400/50 rounded-lg"
-            >
-              {placed.plant && (
-                <img src="/potted_plant.png" className="h-28 object-contain" />
-              )}
-            </div>
-
-            <div
-              onDragOver={allowDrop}
-              onDrop={(e) => onDrop(e, "bottom")}
-              className="h-24 flex items-center justify-center border-2 border-dashed border-green-400/50 rounded-lg"
-            >
-              {placed.roots && (
-                <img src="/roots.png" className="h-20 object-contain" />
-              )}
-            </div>
-
-          </div>
-
-          {allPlaced && (
-            <div className="absolute inset-0 flex items-center justify-center animate-fade-in">
-              <img 
-                src="/plant.png" 
-                className="h-[500px] object-contain animate-grow" 
-                alt="Complete Plant"
-              />
-            </div>
-          )}
-        </div>
-
-        {allPlaced && !showGarden && (
-          <div className="text-center space-y-4 mb-4">
-            <h2 className="text-3xl font-bold text-white drop-shadow-lg animate-bounce">
-              Tree Complete!
-            </h2>
-            <button
-              onClick={placeInGarden}
-              className="px-8 py-3 bg-green-600 hover:bg-green-500 text-white font-bold text-lg rounded-lg shadow-lg"
-            >
-              Place in Botanical Garden
-            </button>
-          </div>
-        )}
-
-        <div className="relative w-[700px] h-[320px] mb-4">
-          <img
-            src="/whiteboard.png"
-            className="absolute inset-0 w-full h-full object-contain"
-            alt="Whiteboard"
-          />
-
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="grid grid-cols-4 gap-8 px-20">
-              {parts.map(
-                (p) =>
-                  !placed[p.id] && (
-                    <div key={p.id} className="flex items-center justify-center">
-                      <img
-                        src={p.img}
-                        draggable
-                        onDragStart={(e) => onDragStart(e, p.id)}
-                        className="w-16 h-16 object-contain cursor-grab hover:scale-110 transition"
-                      />
-                    </div>
-                  )
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-
+      {/* ANIMATIONS */}
       <style jsx>{`
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
+        @keyframes fade {
+          from { opacity: 0 }
+          to { opacity: 1 }
         }
-
         @keyframes grow {
-          from {
-            transform: scale(0.5);
-            opacity: 0;
-          }
-          to {
-            transform: scale(1);
-            opacity: 1;
-          }
+          from { transform: scale(0.6); opacity: 0 }
+          to { transform: scale(1); opacity: 1 }
         }
-
-        .animate-fade-in {
-          animation: fade-in 0.8s ease-out;
+        .animate-fade {
+          animation: fade 0.5s ease-out;
         }
-
         .animate-grow {
-          animation: grow 1s ease-out;
+          animation: grow 0.6s ease-out;
         }
       `}</style>
     </main>
+  );
+}
+
+/* =======================
+   DROP SLOT
+======================= */
+function DropSlot({ part, placed, onDrop }) {
+  return (
+    <div
+      onDragOver={(e) => e.preventDefault()}
+      onDrop={(e) => onDrop(e, part)}
+      className="w-40 h-32 border-2 border-dashed border-green-400/70 rounded-xl
+                 flex flex-col items-center justify-center text-white bg-black/40"
+    >
+      <h4 className="font-bold capitalize mb-2">{part}</h4>
+      {placed && <img src={placed} className="h-16" alt={part} />}
+    </div>
   );
 }

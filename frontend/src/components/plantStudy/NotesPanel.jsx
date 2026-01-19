@@ -14,7 +14,7 @@ export default function NotesPanel({ plantId }) {
         value={note}
         onChange={(e) => saveNote(e.target.value)}
         placeholder="Write your observations, exam points, dosage notes..."
-        className="w-full h-28 rounded-xl bg-gray-900 border border-gray-700 p-3 text-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500"
+        className="w-full h-28 rounded-xl bg-green-900 border border-green-700 p-3 text-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500"
       />
     </div>
   );
