@@ -73,7 +73,7 @@ export default function GamesPage() {
         <div className="absolute inset-0 z-50 bg-black/90 flex flex-col items-center justify-center">
           <div className="text-center space-y-8">
             <h1 className="text-5xl font-bold text-green-400 animate-pulse">
-              🌳 Tree Complete! 🌳
+               Tree Complete!
             </h1>
             <div className="relative">
               <img
@@ -83,7 +83,7 @@ export default function GamesPage() {
               />
             </div>
             <p className="text-2xl text-white">
-              Plant placed in Botanical Garden! 🌺
+              Plant placed in Botanical Garden! 
             </p>
             <button
               onClick={resetGame}
@@ -98,11 +98,11 @@ export default function GamesPage() {
       <div className="relative z-10 h-full w-full flex flex-col items-center justify-between p-6">
 
         <div className="relative w-[600px] h-[600px] mt-4">
-          <img
+          {/* <img
             src="/board.png"
             className="absolute inset-0 w-full h-full object-contain"
             alt="Board"
-          />
+          /> */}
 
           <div className="absolute inset-0 flex flex-col justify-center gap-4 px-20 py-16">
 
