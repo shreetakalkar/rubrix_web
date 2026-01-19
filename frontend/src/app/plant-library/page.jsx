@@ -75,7 +75,7 @@ export default function PlantLibrary() {
   }
 
   return (
-    <main className="h-screen flex flex-col p-8 overflow-hidden">
+    <main className="h-screen flex flex-col p-18 overflow-hidden chalk-text">
       <div className="flex-shrink-0">
         <h1 className="chalk-text text-5xl text-center mb-6 font-bold">
           Plant Library
@@ -103,8 +103,8 @@ export default function PlantLibrary() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto scrollbar-hide bg-white/20 backdrop-blur-sm rounded-4xl">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 p-20">
+      <div className="flex-1 overflow-y-auto scrollbar-hide bg-white/20 backdrop-blur-sm rounded-4xl w-4/5 mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 p-20">
           {filteredPlants.map((plant) => (
             <div
               key={plant.id}

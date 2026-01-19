@@ -125,10 +125,10 @@ export default function PlantModal({ plant, onClose }) {
               />
 
               <div className="flex-1">
-                <h1 className="text-3xl font-bold text-green-900">
+                <h1 className="text-3xl font-bold chalk-text text-green-900">
                   {plant.plant_name}
                 </h1>
-                <p className="text-green-800 italic">
+                <p className="text-green-800 chalk-subtitle">
                   {plant.scientific_name}
                 </p>
 
@@ -155,7 +155,7 @@ export default function PlantModal({ plant, onClose }) {
             </div>
 
             {/* Info Table */}
-            <div className="rounded-xl border border-green-700 overflow-hidden shadow-lg">
+            <div className="rounded-xl border border-green-700 overflow-hidden shadow-lg chalk-subtitle">
               <table className="w-full text-sm">
                 <tbody className="divide-y divide-green-700">
                   <Row label="Habitat" value={plant.habitat} />
@@ -180,8 +180,8 @@ export default function PlantModal({ plant, onClose }) {
                   setShowNotes((v) => !v);
                   setShowStudyList(false);
                 }}
-                className={`flex-1 rounded-lg px-4 py-2 ${
-                  showNotes ? "bg-green-700 text-white" : "bg-green-900/30"
+                className={`flex-1 rounded-lg px-4 py-2 chalk-text text-balck ${
+                  showNotes ? "bg-green-700 " : "bg-green-900/30"
                 }`}
               >
                 📝 Notes
@@ -192,8 +192,8 @@ export default function PlantModal({ plant, onClose }) {
                   setShowStudyList((v) => !v);
                   setShowNotes(false);
                 }}
-                className={`flex-1 rounded-lg px-4 py-2 ${
-                  showStudyList ? "bg-green-700 text-white" : "bg-green-900/30"
+                className={`flex-1 rounded-lg px-4 py-2 text-balck chalk-text ${
+                  showStudyList ? "bg-green-700" : "bg-green-900/30"
                 }`}
               >
                 📚 Study List

@@ -124,8 +124,8 @@ export default function AyurvedaTimeline() {
         {ayurvedaTimeline.map((item, i) => (
           <div key={i} className="flex flex-col items-center">
             <div
-              className={`w-4 h-4 rounded-full transition-colors duration-300 border-2 border-amber-700 ${
-                i <= activeIndex ? "bg-yellow-300" : "bg-gray-400/40"
+              className={`w-6 h-6 rounded-full transition-colors duration-300 border-2 border-amber-700 ${
+                i <= activeIndex ? "bg-yellow-200" : "bg-gray-400/40"
               }`}
             />
             <span className="text-xs text-white mt-1">{item.year}</span>
