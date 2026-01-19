@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -7,21 +8,17 @@ export default function Home() {
       {/* Floating Leaves */}
       <div className="absolute inset-0 z-5 pointer-events-none">
         {[...Array(6)].map((_, i) => (
-          <span
-            key={i}
-            className={`leaf leaf-${i}`}
-          />
+          <span key={i} className={`leaf leaf-${i}`} />
         ))}
       </div>
 
-      
       {/* Background */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: "url('/bg.jpeg')" }}
       />
 
-      {/* Dark overlay for contrast (optional but recommended) */}
+      {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/20" />
 
       {/* Blackboard Heading */}
@@ -34,7 +31,6 @@ export default function Home() {
         </p>
       </div>
 
-
       {/* Bottom Center Cards */}
       <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-10">
         <div className="flex gap-6">
@@ -46,12 +42,14 @@ export default function Home() {
             icon="/library.png"
           />
 
-          {/* Card 2 */}
-          <Card
-            title="Games & Learning"
-            subtitle="Fun Quizzes & Challenges"
-            icon="/games.png"
-          />
+         <Link href="/games">
+  <Card
+    title="Games & Learning"
+    subtitle="Fun Quizzes & Challenges"
+    icon="/games.png"
+  />
+</Link>
+
 
           {/* Card 3 */}
           <Card
