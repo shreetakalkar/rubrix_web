@@ -24,3 +24,67 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* -----------------------------
+   Chalkboard Text Effect
+------------------------------ */
+.chalk-text {
+  font-family: "Comic Sans MS", "Patrick Hand", cursive;
+  color: #f5f5f5;
+  text-shadow:
+    0 1px 1px rgba(255,255,255,0.2),
+    0 0 4px rgba(255,255,255,0.3);
+  letter-spacing: 1px;
+}
+
+.chalk-subtitle {
+  font-family: "Patrick Hand", cursive;
+  color: rgba(245, 245, 245, 0.85);
+  letter-spacing: 0.5px;
+}
+
+/* -----------------------------
+   Floating Leaves Animation
+------------------------------ */
+.leaf {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background-image: url('/leaf.png'); /* use ONE small leaf asset */
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.6;
+  animation: floatLeaf linear infinite;
+}
+
+/* Different positions & timings */
+.leaf-0 { left: 10%; animation-duration: 18s; animation-delay: 0s; }
+.leaf-1 { left: 25%; animation-duration: 22s; animation-delay: 4s; }
+.leaf-2 { left: 45%; animation-duration: 20s; animation-delay: 2s; }
+.leaf-3 { left: 65%; animation-duration: 26s; animation-delay: 6s; }
+.leaf-4 { left: 80%; animation-duration: 24s; animation-delay: 1s; }
+.leaf-5 { left: 90%; animation-duration: 28s; animation-delay: 8s; }
+
+@keyframes floatLeaf {
+  0% {
+    transform: translateY(-10%) rotate(0deg);
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+
+
+
+@keyframes bounceSlow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounceSlow 3s ease-in-out infinite;
+}
