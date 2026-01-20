@@ -6,14 +6,14 @@ import { useRouter } from "next/navigation";
    PLANT CONFIG
 ======================= */
 const plant = {
-  name: "Ashvagandha",
+  name: "rose",
   base: "/plants/base.png",
-  full: "/plants/ashvagandha/full.png",
+  full: "/plants/rose/full.png",
   parts: {
-    roots: "/plants/ashvagandha/roots.png",
-    stem: "/plants/ashvagandha/stem.png",
-    leaves: "/plants/ashvagandha/leaves.png",
-    flower: "/plants/ashvagandha/flower.png",
+    roots: "/plants/rose/roots.png",
+    stem: "/plants/rose/stem.png",
+    leaves: "/plants/rose/leaves.png",
+    flower: "/plants/rose/flower.png",
   },
 };
 

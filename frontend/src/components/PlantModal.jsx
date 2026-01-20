@@ -5,6 +5,7 @@ import { useState, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import PlantQRCode from "@/src/components/plantStudy/PlantQrCode";
+import { GiHerb } from "react-icons/gi";
 
 /* ------------------ Dynamic Imports ------------------ */
 
@@ -62,11 +63,10 @@ function ComparePlantSelector({ plants, onClose, onConfirm }) {
             return (
               <label
                 key={plant.id}
-                className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer border transition ${
-                  checked
+                className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer border transition text-black ${checked
                     ? "bg-green-100 border-green-700"
                     : "border-gray-300"
-                }`}
+                  }`}
               >
                 <input
                   type="checkbox"
@@ -164,11 +164,11 @@ export default function PlantModal({
       plant.scientific_name && `Scientific name: ${plant.scientific_name}`,
       plant.habitat && `Habitat: ${plant.habitat}`,
       plant.parts_used?.length &&
-        `Parts used: ${plant.parts_used.join(", ")}`,
+      `Parts used: ${plant.parts_used.join(", ")}`,
       plant.medicinal_uses?.length &&
-        `Medicinal uses: ${plant.medicinal_uses
-          .map((u) => u.purpose)
-          .join(", ")}`,
+      `Medicinal uses: ${plant.medicinal_uses
+        .map((u) => u.purpose)
+        .join(", ")}`,
     ]
       .filter(Boolean)
       .join(". ");
@@ -222,9 +222,8 @@ export default function PlantModal({
           <div className="mt-4 flex gap-3 flex-wrap">
             <button
               onClick={speakPlantInfo}
-              className={`rounded-full px-4 py-2 text-sm text-white ${
-                isSpeaking ? "bg-orange-500" : "bg-green-700"
-              }`}
+              className={`rounded-full px-4 py-2 text-sm text-white ${isSpeaking ? "bg-orange-500" : "bg-green-700"
+                }`}
             >
               {isSpeaking ? "⏸ Pause" : "▶ Listen"}
             </button>
@@ -301,18 +300,16 @@ export default function PlantModal({
       <div className="flex gap-3 flex-wrap mt-4">
         <button
           onClick={() => setShowNotes((v) => !v)}
-          className={`flex-1 rounded-lg px-4 py-2 ${
-            showNotes ? "bg-green-700" : "bg-green-900/30"
-          }`}
+          className={`flex-1 rounded-lg px-4 py-2 ${showNotes ? "bg-green-700" : "bg-green-900/30"
+            }`}
         >
           📝 Notes
         </button>
 
         <button
           onClick={() => setShowStudyList((v) => !v)}
-          className={`flex-1 rounded-lg px-4 py-2 ${
-            showStudyList ? "bg-green-700" : "bg-green-900/30"
-          }`}
+          className={`flex-1 rounded-lg px-4 py-2 ${showStudyList ? "bg-green-700" : "bg-green-900/30"
+            }`}
         >
           📚 Study List
         </button>
