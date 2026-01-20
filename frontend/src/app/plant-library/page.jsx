@@ -169,9 +169,11 @@ export default function PlantLibrary() {
 
       {selectedPlant && (
         <PlantModal
-          plant={selectedPlant}
-          onClose={() => setSelectedPlant(null)}
-        />
+  plant={selectedPlant}
+  allPlants={plants}
+  onClose={() => setSelectedPlant(null)}
+/>
+
       )}
 
       <style jsx>{`
