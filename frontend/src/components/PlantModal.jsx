@@ -135,24 +135,37 @@ export default function PlantModal({ plant, onClose }) {
                 </p>
 
                 <div className="mt-4 flex gap-3 flex-wrap">
+                  {/* Listen Button */}
                   <button
                     onClick={speakPlantInfo}
                     className={`rounded-full px-4 py-2 text-sm shadow text-white ${
-                      isSpeaking
-                        ? "bg-orange-500"
-                        : "bg-green-700"
+                      isSpeaking ? "bg-orange-500" : "bg-green-700"
                     }`}
                   >
                     {isSpeaking ? "⏸ Pause" : "▶ Listen"}
                   </button>
 
+                  {/* Timeline Button */}
                   <button
                     onClick={() => setShowTimeline(true)}
                     className="rounded-full px-4 py-2 text-sm shadow bg-blue-700 text-white"
                   >
                     🕰 Discovery Timeline
                   </button>
+
+                  {/* YouTube Button */}
+                  {plant.video && (
+                    <a
+                      href={plant.video}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-full px-4 py-2 text-sm shadow bg-red-600 text-white hover:bg-red-700"
+                    >
+                      ▶ Watch on YouTube
+                    </a>
+                  )}
                 </div>
+
               </div>
             </div>
 
