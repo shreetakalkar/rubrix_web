@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 /* =======================
    PLANT CONFIG
@@ -100,6 +101,8 @@ export default function PlantBuilderGame() {
     setCompleted(false);
   };
 
+  const router = useRouter();
+
   return (
     <main className="relative min-h-screen overflow-hidden">
       {/* Background */}
@@ -183,25 +186,37 @@ export default function PlantBuilderGame() {
 
       {/* COMPLETION */}
       {completed && (
-        <div className="absolute inset-0 z-50 bg-black/90 flex items-center justify-center">
-          <div className="bg-green-900 p-10 rounded-2xl text-center space-y-6">
+        <div className="absolute inset-0 z-50 bg-black/50 flex items-center justify-center">
+          <div className="bg-yellow-800 p-10 rounded-2xl text-center space-y-6 chalk-text">
             <h1 className="text-4xl font-bold text-green-300">
               🌱 Plant Built! & Added to Your Botanical Garden
             </h1>
+
             <img
               src={plant.full}
               className="h-64 mx-auto"
               alt="Completed"
             />
-            <button
-              onClick={resetGame}
-              className="px-8 py-3 bg-green-600 hover:bg-green-500 rounded-lg text-white font-bold"
-            >
-              Build Again
-            </button>
+
+            <div className="flex gap-4 justify-center">
+              <button
+                onClick={resetGame}
+                className="px-8 py-3 bg-green-600 hover:bg-green-500 rounded-lg text-white font-bold"
+              >
+                Build Again
+              </button>
+
+              <button
+                onClick={() => router.push("/garden")}
+                className="px-8 py-3 bg-green-600 hover:bg-green-500 rounded-lg text-white font-bold"
+              >
+                🌿 View Botanical Garden
+              </button>
+            </div>
           </div>
         </div>
       )}
+
     </main>
   );
 }

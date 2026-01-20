@@ -105,7 +105,7 @@ export default function DiscoveryTimeline({ plantName = "Amalaki", onClose }) {
 
         {/* fixed modal */}
         <div className="fixed inset-0 flex items-center justify-center pointer-events-none">
-          <div className="relative w-[75%] max-w-6xl h-[70vh] rounded-3xl bg-gradient-to-br from-green-900 to-emerald-950 border border-green-700 shadow-2xl overflow-hidden pointer-events-auto">
+          <div className="relative w-[75%] max-w-6xl h-[70vh] rounded-3xl bg-gradient-to-br from-amber-900 to-yellow-950 border border-yellow-700 shadow-2xl overflow-hidden pointer-events-auto">
 
             {/* close */}
             <button
@@ -117,12 +117,12 @@ export default function DiscoveryTimeline({ plantName = "Amalaki", onClose }) {
 
             {/* header */}
             <div className="absolute top-0 left-0 w-full z-40 p-6 bg-gradient-to-b from-black/70 to-transparent">
-              <h1 className="text-7xl font-bold text-green-200 mt-10 chalk-text">Discovery Timeline</h1>
-              <p className="text-green-300 text-lg chalk-subtitle">Evolution & discovery of {data.name || plantName}</p>
+              <h1 className="text-7xl font-bold text-yellow-200 mt-10 chalk-subtitle">Discovery Timeline</h1>
+              <p className="text-white text-lg chalk-subtitle">Evolution & discovery of {data.name || plantName}</p>
             </div>
 
             {/* content */}
-            <div className="absolute inset-0 pt-28 px-8 grid grid-cols-2 gap-10 chalk-subtitle">
+            <div className="absolute inset-0 text-lg font-bold pt-28 px-8 grid grid-cols-2 gap-10 chalk-subtitle">
 
               {/* text */}
               <div className="relative flex items-center">
@@ -145,10 +145,10 @@ export default function DiscoveryTimeline({ plantName = "Amalaki", onClose }) {
                     <div
                       key={i}
                       ref={(el) => (sectionsRef.current[i] = el)}
-                      className="absolute p-6 rounded-2xl bg-white/60 border border-green-700 text-green-50 shadow-lg"
+                      className="absolute p-6 rounded-2xl bg-white/60 border border-amber-700 text-yellow-50 shadow-lg"
                     >
-                      <h3 className="text-xl font-semibold mb-2 text-green-950">{i + 1}. {step.title}</h3>
-                      <div className="text-green-800 text-sm">{content}</div>
+                      <h3 className="text-xl font-semibold mb-2 text-amber-950">{i + 1}. {step.title}</h3>
+                      <div className="text-amber-900 text-sm">{content}</div>
                     </div>
                   );
                 })}

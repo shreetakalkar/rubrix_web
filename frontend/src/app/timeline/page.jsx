@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+  import { useLayoutEffect } from "react";
+
 gsap.registerPlugin(ScrollTrigger);
 
 
@@ -67,31 +69,38 @@ export default function AyurvedaTimeline() {
     if (el && !bgRefs.current.includes(el)) bgRefs.current.push(el);
   };
 
-  useEffect(() => {
-    const sections = gsap.utils.toArray(".timeline-item");
 
-    // Set initial background opacity
-    bgRefs.current.forEach((bg, i) => gsap.set(bg, { opacity: i === 0 ? 1 : 0 }));
+useLayoutEffect(() => {
+  if (!containerRef.current || !trackRef.current) return;
 
-    // Calculate total horizontal scroll
-    const totalWidth = trackRef.current.scrollWidth - window.innerWidth;
+  const ctx = gsap.context(() => {
+    const sections = Array.from(trackRef.current.children);
 
-    // Horizontal scroll
+    // Initial background state
+    bgRefs.current.forEach((bg, i) =>
+      gsap.set(bg, { opacity: i === 0 ? 1 : 0 })
+    );
+
+    const totalWidth =
+      trackRef.current.scrollWidth - window.innerWidth;
+
     gsap.to(trackRef.current, {
-      x: () => `-${trackRef.current.scrollWidth - window.innerWidth}px`,
+      x: -totalWidth,
       ease: "none",
       scrollTrigger: {
         trigger: containerRef.current,
-        pin: true,
-        scrub: 0.8, // slow down
-        end: () => `+=${totalWidth}`,
+        pin: containerRef.current, // ❗ explicit pin target
+        scrub: 0.8,
+        end: `+=${totalWidth}`,
         snap: 1 / (sections.length - 1),
+
         onUpdate: (self) => {
-          // Determine active index based on scroll progress
-          const index = Math.round(self.progress * (sections.length - 1));
+          const index = Math.round(
+            self.progress * (sections.length - 1)
+          );
+
           setActiveIndex(index);
 
-          // Update background fade
           bgRefs.current.forEach((bg, i) => {
             gsap.to(bg, {
               opacity: i === index ? 1 : 0,
@@ -102,9 +111,13 @@ export default function AyurvedaTimeline() {
         },
       },
     });
+  }, containerRef);
 
-    return () => ScrollTrigger.getAll().forEach((st) => st.kill());
-  }, []);
+  return () => {
+    ctx.revert(); // 🔥 restores DOM & unpins safely
+  };
+}, []);
+
 
   return (
     <section ref={containerRef} className="relative h-screen w-full overflow-hidden">

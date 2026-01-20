@@ -3,11 +3,15 @@
 import Image from "next/image";
 import { useState, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
+
 
 const DiscoveryTimeline = dynamic(
   () => import("@/src/components/plantStudy/DiscoveryTimeline"),
   { ssr: false }
 );
+
+
 
 /* ------------------ Small Panels ------------------ */
 
@@ -34,16 +38,15 @@ export default function PlantModal({ plant, onClose }) {
   const [showNotes, setShowNotes] = useState(false);
   const [showStudyList, setShowStudyList] = useState(false);
   const [showTimeline, setShowTimeline] = useState(false);
+  const [showCompletionBox, setShowCompletionBox] = useState(false);
+  const router = useRouter();
 
   /* 🔒 Lock background scroll */
   useEffect(() => {
     document.body.style.overflow = "hidden";
-
     return () => {
       document.body.style.overflow = "";
-      if (typeof window !== "undefined") {
-        window.speechSynthesis.cancel();
-      }
+      window?.speechSynthesis.cancel();
     };
   }, []);
 
@@ -88,12 +91,10 @@ export default function PlantModal({ plant, onClose }) {
     window.speechSynthesis.speak(utterance);
   }, [isSpeaking, plant]);
 
-  /* ------------------ Close Handler ------------------ */
+  /* ------------------ Close ------------------ */
 
   const handleClose = () => {
-    if (typeof window !== "undefined") {
-      window.speechSynthesis.cancel();
-    }
+    window?.speechSynthesis.cancel();
     onClose();
   };
 
@@ -113,6 +114,7 @@ export default function PlantModal({ plant, onClose }) {
 
           {/* Content */}
           <div className="overflow-y-auto px-6 py-6 space-y-6 scrollbar-none">
+
             {/* Header */}
             <div className="flex flex-col sm:flex-row gap-6">
               <Image
@@ -132,13 +134,13 @@ export default function PlantModal({ plant, onClose }) {
                   {plant.scientific_name}
                 </p>
 
-                <div className="mt-4 flex gap-3">
+                <div className="mt-4 flex gap-3 flex-wrap">
                   <button
                     onClick={speakPlantInfo}
                     className={`rounded-full px-4 py-2 text-sm shadow text-white ${
                       isSpeaking
-                        ? "bg-orange-500 hover:bg-orange-600"
-                        : "bg-green-700 hover:bg-green-800"
+                        ? "bg-orange-500"
+                        : "bg-green-700"
                     }`}
                   >
                     {isSpeaking ? "⏸ Pause" : "▶ Listen"}
@@ -146,7 +148,7 @@ export default function PlantModal({ plant, onClose }) {
 
                   <button
                     onClick={() => setShowTimeline(true)}
-                    className="rounded-full px-4 py-2 text-sm shadow bg-blue-700 hover:bg-blue-800 text-white"
+                    className="rounded-full px-4 py-2 text-sm shadow bg-blue-700 text-white"
                   >
                     🕰 Discovery Timeline
                   </button>
@@ -173,15 +175,15 @@ export default function PlantModal({ plant, onClose }) {
               </table>
             </div>
 
-            {/* Notes / Study */}
-            <div className="flex gap-3">
+            {/* Notes / Study / Complete */}
+            <div className="flex gap-3 flex-wrap">
               <button
                 onClick={() => {
                   setShowNotes((v) => !v);
                   setShowStudyList(false);
                 }}
-                className={`flex-1 rounded-lg px-4 py-2 chalk-text text-balck ${
-                  showNotes ? "bg-green-700 " : "bg-green-900/30"
+                className={`flex-1 rounded-lg px-4 py-2 chalk-text ${
+                  showNotes ? "bg-green-700" : "bg-green-900/30"
                 }`}
               >
                 📝 Notes
@@ -192,11 +194,18 @@ export default function PlantModal({ plant, onClose }) {
                   setShowStudyList((v) => !v);
                   setShowNotes(false);
                 }}
-                className={`flex-1 rounded-lg px-4 py-2 text-balck chalk-text ${
+                className={`flex-1 rounded-lg px-4 py-2 chalk-text ${
                   showStudyList ? "bg-green-700" : "bg-green-900/30"
                 }`}
               >
                 📚 Study List
+              </button>
+
+              <button
+                onClick={() => setShowCompletionBox(true)}
+                className="flex-1 rounded-lg px-4 py-2 bg-emerald-700 text-white font-semibold"
+              >
+                ✅ Mark Chapter Completed
               </button>
             </div>
 
@@ -206,7 +215,41 @@ export default function PlantModal({ plant, onClose }) {
         </div>
       </div>
 
-      {/* 🕰 Timeline Modal (ISOLATED) */}
+      {/* 🎉 Completion Box */}
+      {showCompletionBox && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60">
+          <div className="bg-white rounded-2xl p-6 max-w-sm w-full text-center space-y-4 shadow-xl">
+            <h2 className="text-xl font-bold text-green-700">
+              🎉 Chapter Completed!
+            </h2>
+            <p className="text-gray-700">
+              Great job! You’ve completed this plant.
+            </p>
+
+            <div className="flex gap-3 justify-center">
+              <button
+                onClick={() => {
+                  setShowCompletionBox(false);
+                  onClose();
+                  router.push("/games"); // 👈 navigate here
+                }}
+                className="px-4 py-2 rounded-lg bg-green-700 text-white"
+              >
+                Test Your Knowledge
+              </button>
+
+              <button
+                onClick={() => setShowCompletionBox(false)}
+                className="px-4 py-2 rounded-lg bg-gray-300"
+              >
+                Go Back
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 🕰 Timeline Modal */}
       {showTimeline && (
         <DiscoveryTimeline
           plantId={plant.id}
