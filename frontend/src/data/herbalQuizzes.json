@@ -1,0 +1,148 @@
+{
+  "quizzes": [
+    {
+      "id": 1,
+      "title": "Medicinal Plants Basics",
+      "subtitle": "Learn core herbal knowledge",
+      "icon": "leaf",
+      "questions": [
+        {
+          "q": "Which plant is known as the Queen of Herbs?",
+          "options": ["Tulsi", "Neem", "Aloe Vera", "Mint"],
+          "answer": 0
+        },
+        {
+          "q": "Neem is mainly used for?",
+          "options": ["Digestion", "Skin care", "Sleep", "Memory"],
+          "answer": 1
+        },
+        {
+          "q": "Tulsi belongs to which system of medicine?",
+          "options": ["Ayurveda", "Homeopathy", "Unani", "Allopathy"],
+          "answer": 0
+        },
+        {
+          "q": "Which plant purifies blood?",
+          "options": ["Neem", "Ginger", "Garlic", "Peppermint"],
+          "answer": 0
+        },
+        {
+          "q": "Medicinal plants are valued mainly for?",
+          "options": ["Healing properties", "Taste", "Color", "Fragrance"],
+          "answer": 0
+        },
+        {
+          "q": "Which plant has antibacterial properties?",
+          "options": ["Neem", "Rose", "Jasmine", "Lily"],
+          "answer": 0
+        },
+        {
+          "q": "Which leaf is used to treat cough and cold?",
+          "options": ["Tulsi", "Spinach", "Cabbage", "Lettuce"],
+          "answer": 0
+        },
+        {
+          "q": "Which plant is bitter in taste and medicinal?",
+          "options": ["Neem", "Sugarcane", "Banana", "Coconut"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Herbal Uses & Benefits",
+      "subtitle": "Test practical plant uses",
+      "icon": "seedling",
+      "questions": [
+        {
+          "q": "Which plant helps in wound healing?",
+          "options": ["Aloe Vera", "Rose", "Lavender", "Jasmine"],
+          "answer": 0
+        },
+        {
+          "q": "Tulsi boosts?",
+          "options": ["Immunity", "Vision", "Hearing", "Taste"],
+          "answer": 0
+        },
+        {
+          "q": "Which plant is used to reduce inflammation?",
+          "options": ["Turmeric", "Mint", "Rose", "Tulsi"],
+          "answer": 0
+        },
+        {
+          "q": "Which herb improves digestion?",
+          "options": ["Ginger", "Neem", "Aloe", "Tulsi"],
+          "answer": 0
+        },
+        {
+          "q": "Aloe Vera is best known for?",
+          "options": ["Skin care", "Memory", "Vision", "Hearing"],
+          "answer": 0
+        },
+        {
+          "q": "Which plant helps relieve stress?",
+          "options": ["Ashwagandha", "Neem", "Amla", "Brahmi"],
+          "answer": 0
+        },
+        {
+          "q": "Which herb is commonly used for cold relief?",
+          "options": ["Ginger", "Rose", "Lily", "Sunflower"],
+          "answer": 0
+        },
+        {
+          "q": "Which plant is good for hair health?",
+          "options": ["Amla", "Neem", "Tulsi", "Mint"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Ayurvedic Knowledge",
+      "subtitle": "Explore traditional Ayurveda",
+      "icon": "leaf",
+      "questions": [
+        {
+          "q": "Ayurveda originated in which country?",
+          "options": ["India", "China", "Greece", "Egypt"],
+          "answer": 0
+        },
+        {
+          "q": "Which herb is known as Indian Ginseng?",
+          "options": ["Ashwagandha", "Tulsi", "Neem", "Amla"],
+          "answer": 0
+        },
+        {
+          "q": "Triphala consists of how many fruits?",
+          "options": ["Three", "Two", "Four", "Five"],
+          "answer": 0
+        },
+        {
+          "q": "Which dosha governs movement?",
+          "options": ["Vata", "Pitta", "Kapha", "Agni"],
+          "answer": 0
+        },
+        {
+          "q": "Which dosha controls metabolism?",
+          "options": ["Pitta", "Vata", "Kapha", "Ojas"],
+          "answer": 0
+        },
+        {
+          "q": "Amla is rich in which vitamin?",
+          "options": ["Vitamin C", "Vitamin A", "Vitamin D", "Vitamin B12"],
+          "answer": 0
+        },
+        {
+          "q": "Which herb improves memory?",
+          "options": ["Brahmi", "Neem", "Tulsi", "Ginger"],
+          "answer": 0
+        },
+        {
+          "q": "Which Ayurvedic text is the oldest?",
+          "options": ["Charaka Samhita", "Sushruta Samhita", "Ashtanga Hridaya", "Bhavaprakasha"],
+          "answer": 0
+        }
+      ]
+    }
+  ]
+}
