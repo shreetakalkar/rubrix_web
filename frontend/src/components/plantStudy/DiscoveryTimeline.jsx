@@ -20,7 +20,104 @@ const plantData = {
     ayush_recognition: "Included in the Ayurvedic Pharmacopoeia of India after the formation of AYUSH in 2014.",
     folk_usage: "Used in local folk remedies and traditional health practices for centuries.",
   },
+  ashvagandha: {
+    name: "Ashwagandha",
+    origin: "Native to India, the Middle East, and parts of Africa; used since 1000 BCE.",
+    traditional_medicine: "Highly valued in Ayurveda as a Rasayana for vitality, strength, and longevity.",
+    scientific_identification: {
+      scientific_name: "Withania somnifera",
+      family: "Solanaceae",
+      year_identified: 1753,
+    },
+    ayush_recognition: "Listed in the Ayurvedic Pharmacopoeia of India and promoted under AYUSH guidelines.",
+    folk_usage: "Used in folk medicine for stress relief, energy, and stamina enhancement.",
+  },
+  bala: {
+    name: "Bala",
+    origin: "Native to India; documented in Ayurvedic texts from 600–400 BCE.",
+    traditional_medicine: "Mentioned in Charaka and Sushruta Samhita for strength and rejuvenation.",
+    scientific_identification: {
+      scientific_name: "Sida cordifolia",
+      family: "Malvaceae",
+      year_identified: 1753,
+    },
+    ayush_recognition: "Included in AYUSH formulations for musculoskeletal and neurological disorders.",
+    folk_usage: "Used in local remedies for joint pain, respiratory issues, and general vitality.",
+  },
+  brahmi: {
+    name: "Brahmi",
+    origin: "Found in India and Sri Lanka; used in Ayurveda since at least 1000 BCE.",
+    traditional_medicine: "Known for enhancing memory, cognition, and mental clarity.",
+    scientific_identification: {
+      scientific_name: "Bacopa monnieri",
+      family: "Plantaginaceae",
+      year_identified: 1753,
+    },
+    ayush_recognition: "Standardized and included in AYUSH herbal formulations for cognitive health.",
+    folk_usage: "Used in local folk medicine for memory, mental fatigue, and neurological support.",
+  },
+  guduchi: {
+    name: "Guduchi",
+    origin: "Native to India and Myanmar; utilized in Ayurveda since the 1st millennium BCE.",
+    traditional_medicine: "Praised as 'Amrita' (the divine nectar) in classical texts for immunity and longevity.",
+    scientific_identification: {
+      scientific_name: "Tinospora cordifolia",
+      family: "Menispermaceae",
+      year_identified: 1753,
+    },
+    ayush_recognition: "Included in AYUSH immune-boosting and detoxification formulations.",
+    folk_usage: "Used in local remedies for fever, diabetes, and general health promotion.",
+  },
+  tulsi: {
+    name: "Tulsi",
+    origin: "Sacred plant of India; cultivation and use date back over 3000 years.",
+    traditional_medicine: "Extensively documented in Ayurveda for respiratory, immune, and spiritual benefits.",
+    scientific_identification: {
+      scientific_name: "Ocimum sanctum",
+      family: "Lamiaceae",
+      year_identified: 1753,
+    },
+    ayush_recognition: "Widely promoted by AYUSH for its adaptogenic and immunomodulatory properties.",
+    folk_usage: "Used in teas, decoctions, and rituals to enhance immunity and well-being.",
+  },
+  haridra: {
+    name: "Haridra",
+    origin: "Native to India and Southeast Asia; used for thousands of years in Ayurvedic practices.",
+    traditional_medicine: "Used for anti-inflammatory, digestive, and skin-related therapies.",
+    scientific_identification: {
+      scientific_name: "Curcuma longa",
+      family: "Zingiberaceae",
+      year_identified: 1753,
+    },
+    ayush_recognition: "Standardized in AYUSH formulations for anti-inflammatory and antioxidant benefits.",
+    folk_usage: "Used in folk medicine for wound healing, liver health, and joint pain relief.",
+  },
+  kumari: {
+    name: "Kumari",
+    origin: "Native to the Indian subcontinent; cultivated in Ayurveda since ancient times.",
+    traditional_medicine: "Known as Aloe vera; used for digestive, skin, and rejuvenation purposes.",
+    scientific_identification: {
+      scientific_name: "Aloe barbadensis miller",
+      family: "Asphodelaceae",
+      year_identified: 1753,
+    },
+    ayush_recognition: "Included in AYUSH formulations for skin health and detoxification.",
+    folk_usage: "Applied topically and consumed internally for burns, wounds, and digestive health.",
+  },
+  nimba: {
+    name: "Nimba",
+    origin: "Native to India; used for over 2000 years in Ayurvedic medicine.",
+    traditional_medicine: "Used in classical texts for its blood-purifying, antimicrobial, and anti-inflammatory properties.",
+    scientific_identification: {
+      scientific_name: "Azadirachta indica",
+      family: "Meliaceae",
+      year_identified: 1753,
+    },
+    ayush_recognition: "Included in AYUSH herbal preparations for immunity, skin, and hygiene.",
+    folk_usage: "Used in local remedies for skin infections, fever, and oral hygiene.",
+  },
 };
+
 
 export default function DiscoveryTimeline({ plantName = "Amalaki", onClose }) {
   const scrollRef = useRef(null);

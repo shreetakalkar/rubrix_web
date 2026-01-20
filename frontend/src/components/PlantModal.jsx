@@ -5,13 +5,15 @@ import { useState, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 
-
 const DiscoveryTimeline = dynamic(
   () => import("@/src/components/plantStudy/DiscoveryTimeline"),
   { ssr: false }
 );
 
-
+const GrowthTimelineModal = dynamic(
+  () => import("@/src/components/plantStudy/GrowthTimelineModal"),
+  { ssr: false }
+);
 
 /* ------------------ Small Panels ------------------ */
 
@@ -34,12 +36,19 @@ function StudyListManager({ plantId }) {
 /* ------------------ Main Modal ------------------ */
 
 export default function PlantModal({ plant, onClose }) {
+  const router = useRouter();
+
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [showNotes, setShowNotes] = useState(false);
   const [showStudyList, setShowStudyList] = useState(false);
   const [showTimeline, setShowTimeline] = useState(false);
-  const [showCompletionBox, setShowCompletionBox] = useState(false);
-  const router = useRouter();
+  const [showGrowthTimeline, setShowGrowthTimeline] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
+
+
+  /* ✅ Lesson Completed */
+  const [lessonCompleted, setLessonCompleted] = useState(false);
+  const [showCompletionModal, setShowCompletionModal] = useState(false);
 
   /* 🔒 Lock background scroll */
   useEffect(() => {
@@ -49,6 +58,22 @@ export default function PlantModal({ plant, onClose }) {
       window?.speechSynthesis.cancel();
     };
   }, []);
+
+  /* 🔁 Load lesson completion */
+  useEffect(() => {
+    if (!plant?.id) return;
+    const saved = localStorage.getItem(`lesson-complete-${plant.id}`);
+    setLessonCompleted(saved === "true");
+  }, [plant?.id]);
+
+  /* 💾 Save lesson completion */
+  useEffect(() => {
+    if (!plant?.id) return;
+    localStorage.setItem(
+      `lesson-complete-${plant.id}`,
+      lessonCompleted.toString()
+    );
+  }, [lessonCompleted, plant?.id]);
 
   if (!plant) return null;
 
@@ -91,20 +116,22 @@ export default function PlantModal({ plant, onClose }) {
     window.speechSynthesis.speak(utterance);
   }, [isSpeaking, plant]);
 
-  /* ------------------ Close ------------------ */
-
   const handleClose = () => {
     window?.speechSynthesis.cancel();
     onClose();
   };
 
+  const handleMarkCompleted = () => {
+    setLessonCompleted(true);
+    setShowCompletionModal(true);
+  };
+
   return (
     <>
       {/* 🌿 Plant Modal */}
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-        <div className="relative w-[92%] max-w-3xl max-h-[90vh] rounded-2xl bg-green-200 border border-green-800 shadow-2xl flex flex-col">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 md:p-8">
+        <div className="relative w-[92%] max-w-3xl max-h-[90vh] rounded-2xl bg-green-200 border border-green-800 shadow-2xl flex flex-col overflow-hidden">
 
-          {/* Close */}
           <button
             onClick={handleClose}
             className="absolute right-4 top-4 z-20 rounded-full bg-red-500 hover:bg-red-600 px-3 py-1 text-white shadow"
@@ -112,7 +139,6 @@ export default function PlantModal({ plant, onClose }) {
             ✕
           </button>
 
-          {/* Content */}
           <div className="overflow-y-auto px-6 py-6 space-y-6 scrollbar-none">
 
             {/* Header */}
@@ -130,12 +156,18 @@ export default function PlantModal({ plant, onClose }) {
                 <h1 className="text-3xl font-bold chalk-text text-green-900">
                   {plant.plant_name}
                 </h1>
-                <p className="text-green-800 chalk-subtitle">
+
+                {lessonCompleted && (
+                  <span className="inline-block mt-2 rounded-full bg-green-700 px-3 py-1 text-xs text-white">
+                    Lesson Completed
+                  </span>
+                )}
+
+                <p className="mt-1 text-green-800 chalk-subtitle">
                   {plant.scientific_name}
                 </p>
 
                 <div className="mt-4 flex gap-3 flex-wrap">
-                  {/* Listen Button */}
                   <button
                     onClick={speakPlantInfo}
                     className={`rounded-full px-4 py-2 text-sm shadow text-white ${
@@ -145,7 +177,6 @@ export default function PlantModal({ plant, onClose }) {
                     {isSpeaking ? "⏸ Pause" : "▶ Listen"}
                   </button>
 
-                  {/* Timeline Button */}
                   <button
                     onClick={() => setShowTimeline(true)}
                     className="rounded-full px-4 py-2 text-sm shadow bg-blue-700 text-white"
@@ -153,19 +184,24 @@ export default function PlantModal({ plant, onClose }) {
                     🕰 Discovery Timeline
                   </button>
 
-                  {/* YouTube Button */}
+                  <button
+                    onClick={() => setShowGrowthTimeline(true)}
+                    className="rounded-full px-4 py-2 text-sm shadow bg-emerald-700 text-white"
+                  >
+                    🌱 Growth Timeline
+                  </button>
+
                   {plant.video && (
                     <a
                       href={plant.video}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-full px-4 py-2 text-sm shadow bg-red-600 text-white hover:bg-red-700"
+                      className="rounded-full px-4 py-2 text-sm shadow bg-red-600 text-white"
                     >
                       ▶ Watch on YouTube
                     </a>
                   )}
                 </div>
-
               </div>
             </div>
 
@@ -188,14 +224,13 @@ export default function PlantModal({ plant, onClose }) {
               </table>
             </div>
 
-            {/* Notes / Study / Complete */}
             <div className="flex gap-3 flex-wrap">
               <button
                 onClick={() => {
                   setShowNotes((v) => !v);
                   setShowStudyList(false);
                 }}
-                className={`flex-1 rounded-lg px-4 py-2 chalk-text ${
+                className={`flex-1 rounded-lg px-4 py-2 ${
                   showNotes ? "bg-green-700" : "bg-green-900/30"
                 }`}
               >
@@ -207,19 +242,21 @@ export default function PlantModal({ plant, onClose }) {
                   setShowStudyList((v) => !v);
                   setShowNotes(false);
                 }}
-                className={`flex-1 rounded-lg px-4 py-2 chalk-text ${
+                className={`flex-1 rounded-lg px-4 py-2 ${
                   showStudyList ? "bg-green-700" : "bg-green-900/30"
                 }`}
               >
                 📚 Study List
               </button>
 
-              <button
-                onClick={() => setShowCompletionBox(true)}
-                className="flex-1 rounded-lg px-4 py-2 bg-emerald-700 text-white font-semibold"
-              >
-                ✅ Mark Chapter Completed
-              </button>
+              {!lessonCompleted && (
+                <button
+                  onClick={handleMarkCompleted}
+                  className="rounded-full px-4 py-2 text-sm shadow text-white bg-gray-700 hover:bg-gray-800"
+                >
+                  ⬜ Mark Lesson Complete
+                </button>
+              )}
             </div>
 
             {showNotes && <NotesPanel plantId={plant.id} />}
@@ -228,46 +265,54 @@ export default function PlantModal({ plant, onClose }) {
         </div>
       </div>
 
-      {/* 🎉 Completion Box */}
-      {showCompletionBox && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60">
-          <div className="bg-white rounded-2xl p-6 max-w-sm w-full text-center space-y-4 shadow-xl">
-            <h2 className="text-xl font-bold text-green-700">
-              🎉 Chapter Completed!
+      {/* 🎉 Completion Modal */}
+      {showCompletionModal && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 backdrop-blur-sm">
+          <div className="bg-white rounded-2xl p-6 w-[90%] max-w-md text-center shadow-2xl space-y-6">
+            <h2 className="text-2xl font-bold text-green-800">
+              Lesson Completed 🎉
             </h2>
+
             <p className="text-gray-700">
-              Great job! You’ve completed this plant.
+              What would you like to do next?
             </p>
 
-            <div className="flex gap-3 justify-center">
+            <div className="flex gap-4">
               <button
                 onClick={() => {
-                  setShowCompletionBox(false);
-                  onClose();
-                  router.push("/games"); // 👈 navigate here
+                  setShowCompletionModal(false);
+                  handleClose();
                 }}
-                className="px-4 py-2 rounded-lg bg-green-700 text-white"
+                className="flex-1 rounded-lg bg-gray-600 hover:bg-gray-700 px-4 py-2 text-white"
               >
-                Test Your Knowledge
+                ✖ Close
               </button>
 
+
+
               <button
-                onClick={() => setShowCompletionBox(false)}
-                className="px-4 py-2 rounded-lg bg-gray-300 text-black"
+                onClick={() => router.push("/games")}
+                className="flex-1 rounded-lg bg-blue-700 hover:bg-blue-800 px-4 py-2 text-white"
               >
-                Go Back
+                🎮 Test Your Knowledge
               </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* 🕰 Timeline Modal */}
       {showTimeline && (
         <DiscoveryTimeline
           plantId={plant.id}
           plantName={plant.plant_name}
           onClose={() => setShowTimeline(false)}
+        />
+      )}
+
+      {showGrowthTimeline && (
+        <GrowthTimelineModal
+          plantName={plant.plant_name}
+          onClose={() => setShowGrowthTimeline(false)}
         />
       )}
     </>
