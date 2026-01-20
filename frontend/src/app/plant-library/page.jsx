@@ -14,6 +14,7 @@ export default function PlantLibrary() {
   const [selectedPlant, setSelectedPlant] = useState(null);
   const [showBookmarkedOnly, setShowBookmarkedOnly] = useState(false);
   const [bookmarkedIds, setBookmarkedIds] = useState([]);
+  const [filterType, setFilterType] = useState("all");
 
   useEffect(() => {
     const fetchPlants = async () => {
@@ -30,7 +31,6 @@ export default function PlantLibrary() {
         setLoading(false);
       }
     };
-
     fetchPlants();
   }, []);
 
@@ -43,16 +43,10 @@ export default function PlantLibrary() {
 
   useEffect(() => {
     loadBookmarks();
-
-    const handleBookmarkChange = () => {
-      loadBookmarks();
-    };
-
+    const handleBookmarkChange = () => loadBookmarks();
     window.addEventListener("bookmarkChanged", handleBookmarkChange);
-
-    return () => {
+    return () =>
       window.removeEventListener("bookmarkChanged", handleBookmarkChange);
-    };
   }, []);
 
   useEffect(() => {
@@ -60,14 +54,42 @@ export default function PlantLibrary() {
   }, [showBookmarkedOnly]);
 
   const filteredPlants = plants.filter((plant) => {
-    const matchesSearch =
-      plant.plant_name?.toLowerCase().includes(search.toLowerCase());
-
     const matchesBookmark = showBookmarkedOnly
       ? bookmarkedIds.includes(plant.id)
       : true;
 
-    return matchesSearch && matchesBookmark;
+    const searchText = [
+      plant.plant_name,
+      plant.scientific_identification?.scientific_name,
+      plant.scientific_identification?.family,
+      plant.habitat,
+      plant.origin,
+      plant.description?.type,
+      plant.description?.physical_features,
+      ...(plant.ayurvedic_formulations || []),
+      ...(plant.medicinal_uses || []).map((m) => m.purpose),
+      ...(plant.medicinal_uses || []).map((m) => m.remedy),
+      ...(plant.food_recipes || []).map((r) => r.name),
+      ...(Array.isArray(plant.local_names?.Hindi) ? plant.local_names.Hindi : []),
+      ...(plant.parts_used || []),
+    ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+
+    const matchesSearch = searchText.includes(search.toLowerCase());
+
+    let matchesType = true;
+
+    if (filterType === "medicinal") {
+      matchesType = plant.medicinal_uses && plant.medicinal_uses.length > 0;
+    } else if (filterType === "ayurvedic") {
+      matchesType = plant.ayurvedic_formulations && plant.ayurvedic_formulations.length > 0;
+    } else if (filterType === "food") {
+      matchesType = plant.food_recipes && plant.food_recipes.length > 0;
+    }
+
+    return matchesSearch && matchesBookmark && matchesType;
   });
 
   if (loading) {
@@ -87,19 +109,28 @@ export default function PlantLibrary() {
             placeholder="Search plants..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full max-w-lg bg-white/30 px-4 py-2 rounded-3xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400"
+            className="w-full max-w-lg bg-white/30 px-4 py-2 rounded-3xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400 text-black placeholder-black"
           />
 
-          <button
-            onClick={() => setShowBookmarkedOnly((prev) => !prev)}
-            className={`px-4 py-2 rounded-3xl font-medium transition ${
-              showBookmarkedOnly
-                ? "bg-yellow-500 text-black"
-                : "bg-yellow-800 text-white hover:bg-yellow-600"
-            }`}
+          <select
+            value={filterType}
+            onChange={(e) => setFilterType(e.target.value)}
+            className="px-4 py-2 rounded-3xl bg-white/30 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400 text-black"
           >
-            {showBookmarkedOnly ? "Showing Bookmarked" : "All Plants"}
-          </button>
+            <option value="all">All Types</option>
+            <option value="medicinal">Medicinal Use</option>
+            <option value="ayurvedic">Ayurvedic Formulation</option>
+            <option value="food">Food Recipes</option>
+          </select>
+
+          <select
+            value={showBookmarkedOnly ? "bookmarked" : "all"}
+            onChange={(e) => setShowBookmarkedOnly(e.target.value === "bookmarked")}
+            className="px-4 py-2 rounded-3xl bg-white/30 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400 text-black"
+          >
+            <option value="all">All Plants</option>
+            <option value="bookmarked">Bookmarked Only</option>
+          </select>
         </div>
       </div>
 
@@ -148,7 +179,6 @@ export default function PlantLibrary() {
           -ms-overflow-style: none;
           scrollbar-width: none;
         }
-
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
         }
