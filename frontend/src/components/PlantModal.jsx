@@ -253,7 +253,7 @@ export default function PlantModal({ plant, onClose }) {
 
               <button
                 onClick={() => setShowCompletionBox(false)}
-                className="px-4 py-2 rounded-lg bg-gray-300"
+                className="px-4 py-2 rounded-lg bg-gray-300 text-black"
               >
                 Go Back
               </button>
