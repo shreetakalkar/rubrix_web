@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
-
+import PlantQRCode from "@/src/components/plantStudy/PlantQrCode";
 const DiscoveryTimeline = dynamic(
   () => import("@/src/components/plantStudy/DiscoveryTimeline"),
   { ssr: false }
@@ -203,6 +203,7 @@ export default function PlantModal({ plant, onClose }) {
                   )}
                 </div>
               </div>
+                <PlantQRCode plantName={plant.plant_name} />
             </div>
 
             {/* Info Table */}

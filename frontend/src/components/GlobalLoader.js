@@ -49,9 +49,9 @@ export default function GlobalLoader() {
 
         {/* Owl Mascot */}
         <img src="/owl.png" className="w-60 animate-bounce mt-5" alt="Loading" />
-        <p className="text-white mt-4 text-lg font-semibold chalk-text">
+        {/* <p className="text-white mt-4 text-lg font-semibold chalk-text">
           Loading...
-        </p>
+        </p> */}
       </div>
     </div>
   );
