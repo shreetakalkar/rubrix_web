@@ -231,7 +231,7 @@ export default function PlantModal({
 
             <button
               onClick={() => setShowTimeline(true)}
-              className="rounded-full px-4 py-2 text-sm bg-blue-700 text-white"
+              className="rounded-full px-4 py-2 text-sm bg-blue-400 text-white"
             >
               🕰 Discovery Timeline
             </button>
@@ -257,7 +257,7 @@ export default function PlantModal({
             {!isComparison && (
               <button
                 onClick={() => setShowCompareSelector(true)}
-                className="rounded-full px-4 py-2 text-sm bg-purple-700 text-white"
+                className="rounded-full h-10 px-4 py-2 text-sm bg-amber-700 text-white"
               >
                 🔍 Compare Plants
               </button>

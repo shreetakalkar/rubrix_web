@@ -29,7 +29,7 @@ export default function GamesPage() {
 
         
         
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3 mb-100">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-4 mb-100">
 
           
           
@@ -55,6 +55,14 @@ export default function GamesPage() {
             subtitle="Create a medicinal tree"
             buttonText="Start Building"
             href="/games/build-tree"
+            icon="/herbal-quiz.png"
+          />
+
+          <GameCard
+            title="Thematic Tours"
+            subtitle="Immunity & Rasayna Tour"
+            buttonText="Start Building"
+            href="http://localhost:9000"
             icon="/herbal-quiz.png"
           />
 
