@@ -4,6 +4,7 @@ export const PLANT_3D_MODELS = {
   brahmi: "/models/brahmi.glb",
   haridra: "/models/haridra.glb",
   kumari: "/models/kumari.glb",
+  amalaki: "/models/amalaki.glb",
 };
 
 export function normalizePlantKey(name = "") {
