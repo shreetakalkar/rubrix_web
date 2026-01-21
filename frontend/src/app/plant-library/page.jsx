@@ -6,8 +6,18 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import PlantModal from "@/src/components/PlantModal";
 import BookmarkButton from "@/src/components/plantStudy/BookmarkButton";
+import { useLanguage } from "@/src/app/context/LanguageContext";
+import plantLibraryTranslations from "@/src/app/translations/plantLibrary.json";
+
+// Helper to get nested keys like "filters.all" safely
+const getNestedText = (obj, keyPath) => {
+  return keyPath.split(".").reduce((o, k) => (o ? o[k] : undefined), obj);
+};
 
 export default function PlantLibrary() {
+  const { language } = useLanguage();
+  const t = (key) => getNestedText(plantLibraryTranslations[language], key) || key;
+
   const [plants, setPlants] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
@@ -20,10 +30,7 @@ export default function PlantLibrary() {
     const fetchPlants = async () => {
       try {
         const snapshot = await getDocs(collection(db, "plants"));
-        const data = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
+        const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
         setPlants(data);
       } catch (error) {
         console.error(error);
@@ -35,9 +42,7 @@ export default function PlantLibrary() {
   }, []);
 
   const loadBookmarks = () => {
-    const stored = JSON.parse(
-      localStorage.getItem("bookmarked_plants") || "[]"
-    );
+    const stored = JSON.parse(localStorage.getItem("bookmarked_plants") || "[]");
     setBookmarkedIds(stored);
   };
 
@@ -45,8 +50,7 @@ export default function PlantLibrary() {
     loadBookmarks();
     const handleBookmarkChange = () => loadBookmarks();
     window.addEventListener("bookmarkChanged", handleBookmarkChange);
-    return () =>
-      window.removeEventListener("bookmarkChanged", handleBookmarkChange);
+    return () => window.removeEventListener("bookmarkChanged", handleBookmarkChange);
   }, []);
 
   useEffect(() => {
@@ -54,10 +58,7 @@ export default function PlantLibrary() {
   }, [showBookmarkedOnly]);
 
   const filteredPlants = plants.filter((plant) => {
-    const matchesBookmark = showBookmarkedOnly
-      ? bookmarkedIds.includes(plant.id)
-      : true;
-
+    const matchesBookmark = showBookmarkedOnly ? bookmarkedIds.includes(plant.id) : true;
     const searchText = [
       plant.plant_name,
       plant.scientific_identification?.scientific_name,
@@ -80,33 +81,24 @@ export default function PlantLibrary() {
     const matchesSearch = searchText.includes(search.toLowerCase());
 
     let matchesType = true;
-
-    if (filterType === "medicinal") {
-      matchesType = plant.medicinal_uses && plant.medicinal_uses.length > 0;
-    } else if (filterType === "ayurvedic") {
-      matchesType = plant.ayurvedic_formulations && plant.ayurvedic_formulations.length > 0;
-    } else if (filterType === "food") {
-      matchesType = plant.food_recipes && plant.food_recipes.length > 0;
-    }
+    if (filterType === "medicinal") matchesType = plant.medicinal_uses?.length > 0;
+    else if (filterType === "ayurvedic") matchesType = plant.ayurvedic_formulations?.length > 0;
+    else if (filterType === "food") matchesType = plant.food_recipes?.length > 0;
 
     return matchesSearch && matchesBookmark && matchesType;
   });
 
-  if (loading) {
-    return <div className="text-center mt-10">Loading plants...</div>;
-  }
+  if (loading) return <div className="text-center mt-10">{t("loading")}</div>;
 
   return (
     <main className="h-screen flex flex-col p-18 overflow-hidden chalk-text">
       <div className="flex-shrink-0">
-        <h1 className="chalk-text text-5xl text-center mb-6 font-bold">
-          Plant Library
-        </h1>
+        <h1 className="chalk-text text-5xl text-center mb-6 font-bold">{t("title")}</h1>
 
         <div className="flex flex-wrap justify-center gap-4 mb-8">
           <input
             type="text"
-            placeholder="Search plants..."
+            placeholder={t("searchPlaceholder")}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="w-full max-w-lg bg-white/30 px-4 py-2 rounded-3xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400 text-black placeholder-black"
@@ -117,10 +109,10 @@ export default function PlantLibrary() {
             onChange={(e) => setFilterType(e.target.value)}
             className="px-4 py-2 rounded-3xl bg-white/30 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400 text-black"
           >
-            <option value="all">All Types</option>
-            <option value="medicinal">Medicinal Use</option>
-            <option value="ayurvedic">Ayurvedic Formulation</option>
-            <option value="food">Food Recipes</option>
+            <option value="all">{t("filters.all")}</option>
+            <option value="medicinal">{t("filters.medicinal")}</option>
+            <option value="ayurvedic">{t("filters.ayurvedic")}</option>
+            <option value="food">{t("filters.food")}</option>
           </select>
 
           <select
@@ -128,8 +120,8 @@ export default function PlantLibrary() {
             onChange={(e) => setShowBookmarkedOnly(e.target.value === "bookmarked")}
             className="px-4 py-2 rounded-3xl bg-white/30 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400 text-black"
           >
-            <option value="all">All Plants</option>
-            <option value="bookmarked">Bookmarked Only</option>
+            <option value="all">{t("bookmark.all")}</option>
+            <option value="bookmarked">{t("bookmark.only")}</option>
           </select>
         </div>
       </div>
@@ -141,10 +133,7 @@ export default function PlantLibrary() {
               key={plant.id}
               className="bg-white/20 rounded-3xl backdrop-blur-md border-yellow-800 border-2 shadow-md overflow-hidden relative hover:scale-105 transition"
             >
-              <div
-                onClick={() => setSelectedPlant(plant)}
-                className="cursor-pointer relative"
-              >
+              <div onClick={() => setSelectedPlant(plant)} className="cursor-pointer relative">
                 <Image
                   src={plant.photos?.[0] || "/placeholder.png"}
                   alt={plant.plant_name}
@@ -153,11 +142,9 @@ export default function PlantLibrary() {
                   className="w-full h-48 object-cover"
                   unoptimized
                 />
-
                 <div className="absolute top-2 right-2 z-10">
                   <BookmarkButton plantId={plant.id} />
                 </div>
-
                 <div className="p-4 text-center font-medium bg-yellow-800 text-white">
                   {plant.plant_name}
                 </div>
@@ -167,14 +154,7 @@ export default function PlantLibrary() {
         </div>
       </div>
 
-      {selectedPlant && (
-        <PlantModal
-  plant={selectedPlant}
-  allPlants={plants}
-  onClose={() => setSelectedPlant(null)}
-/>
-
-      )}
+      {selectedPlant && <PlantModal plant={selectedPlant} allPlants={plants} onClose={() => setSelectedPlant(null)} />}
 
       <style jsx>{`
         .scrollbar-hide {

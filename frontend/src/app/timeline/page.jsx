@@ -1,63 +1,64 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  import { useLayoutEffect } from "react";
+import { useLanguage } from "../context/LanguageContext";
+import timelineTranslations from "../translations/Timeline.json";
 
 gsap.registerPlugin(ScrollTrigger);
 
-
-  const ayurvedaTimeline = [
+const ayurvedaTimeline = [
   {
     year: "3000 BCE",
     title: "Origins in the Vedas",
-    desc: "Ayurveda emerges from the Atharva Veda, focusing on balance of body and mind. Practices included meditation, herbal remedies, dietary rules, and daily routines for optimal health.",
+    desc: "Ayurveda emerges from the Atharva Veda, focusing on balance of body and mind.",
     location: "India",
     keyFigures: ["Ancient Rishis"],
-    significance: "Foundational concepts of Doshas and holistic wellness. These early texts laid the philosophical and practical groundwork for health, disease prevention, and longevity practices.",
+    significance: "Foundational concepts of Doshas and holistic wellness.",
     bg: "/ayurveda/veda.jpg",
   },
   {
     year: "1500 BCE",
     title: "Charaka Samhita",
-    desc: "Charaka Samhita systematically documented internal medicine, diagnosis techniques, and herbal formulations. It emphasized ethics of physician-patient relationships and preventive care.",
+    desc: "Systematic documentation of internal medicine and ethics.",
     location: "India",
     keyFigures: ["Charaka"],
-    significance: "Developed systematic methods for diagnosing and treating diseases. Introduced concepts of metabolism, digestion, and immunity that are still relevant in Ayurveda today.",
+    significance: "Scientific diagnosis and treatment methods.",
     bg: "/ayurveda/charaka.jpg",
   },
   {
     year: "1200 BCE",
     title: "Sushruta Samhita",
-    desc: "Sushruta Samhita advanced surgery with detailed anatomical knowledge, surgical instruments, and procedures. It included plastic surgery, eye operations, and trauma management.",
+    desc: "Advanced surgery and anatomy knowledge.",
     location: "India",
     keyFigures: ["Sushruta"],
-    significance: "Introduced surgical techniques and instruments still referenced today. It highlighted the importance of hands-on medical training and clinical observation.",
+    significance: "Foundation of surgical science.",
     bg: "/ayurveda/sushruta.jpg",
   },
   {
     year: "800 CE",
     title: "Golden Age",
-    desc: "Ayurveda flourished in Indian universities. Scholars compiled encyclopedic knowledge, integrating treatments, medicinal plants, and theories of body-mind-soul harmony.",
+    desc: "Ayurveda flourished in universities.",
     location: "India",
     keyFigures: ["Various Scholars"],
-    significance: "Ayurveda became a structured medical science taught in universities. Knowledge was systematized, ensuring transmission across generations and influencing other Asian medical systems.",
+    significance: "Ayurveda became a formal science.",
     bg: "/ayurveda/golden.jpg",
   },
   {
     year: "Modern Era",
     title: "Global Recognition",
-    desc: "Ayurveda gained worldwide recognition through integration with modern wellness practices. Therapies like yoga, meditation, Panchakarma, and herbal medicine became globally popular.",
+    desc: "Ayurveda gained worldwide popularity.",
     location: "Worldwide",
     keyFigures: ["Global Practitioners"],
-    significance: "Ayurveda practices integrated into wellness and alternative medicine globally. Modern research validates some herbal remedies and lifestyle approaches, merging traditional wisdom with contemporary science.",
+    significance: "Integration with modern wellness.",
     bg: "/ayurveda/modern.jpg",
   },
 ];
 
 export default function AyurvedaTimeline() {
+  const { language, t, loadTranslations } = useLanguage();
+
   const containerRef = useRef(null);
   const trackRef = useRef(null);
   const bgRefs = useRef([]);
@@ -69,153 +70,106 @@ export default function AyurvedaTimeline() {
     if (el && !bgRefs.current.includes(el)) bgRefs.current.push(el);
   };
 
+  // Load translations for this page
+  useEffect(() => {
+    loadTranslations(timelineTranslations);
+  }, [loadTranslations]);
 
-useLayoutEffect(() => {
-  if (!containerRef.current || !trackRef.current) return;
+  useLayoutEffect(() => {
+    if (!containerRef.current || !trackRef.current) return;
 
-  const ctx = gsap.context(() => {
-    const sections = Array.from(trackRef.current.children);
+    const ctx = gsap.context(() => {
+      const sections = Array.from(trackRef.current.children);
+      const totalWidth = trackRef.current.scrollWidth - window.innerWidth;
 
-    // Initial background state
-    bgRefs.current.forEach((bg, i) =>
-      gsap.set(bg, { opacity: i === 0 ? 1 : 0 })
-    );
+      bgRefs.current.forEach((bg, i) =>
+        gsap.set(bg, { opacity: i === 0 ? 1 : 0 })
+      );
 
-    const totalWidth =
-      trackRef.current.scrollWidth - window.innerWidth;
+      gsap.to(trackRef.current, {
+        x: -totalWidth,
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          pin: containerRef.current,
+          scrub: 0.8,
+          end: `+=${totalWidth}`,
+          snap: 1 / (sections.length - 1),
+          onUpdate: (self) => {
+            const index = Math.round(self.progress * (sections.length - 1));
+            setActiveIndex(index);
 
-    gsap.to(trackRef.current, {
-      x: -totalWidth,
-      ease: "none",
-      scrollTrigger: {
-        trigger: containerRef.current,
-        pin: containerRef.current, // ❗ explicit pin target
-        scrub: 0.8,
-        end: `+=${totalWidth}`,
-        snap: 1 / (sections.length - 1),
-
-        onUpdate: (self) => {
-          const index = Math.round(
-            self.progress * (sections.length - 1)
-          );
-
-          setActiveIndex(index);
-
-          bgRefs.current.forEach((bg, i) => {
-            gsap.to(bg, {
-              opacity: i === index ? 1 : 0,
-              duration: 0.5,
-              ease: "power2.out",
+            bgRefs.current.forEach((bg, i) => {
+              gsap.to(bg, {
+                opacity: i === index ? 1 : 0,
+                duration: 0.5,
+              });
             });
-          });
+          },
         },
-      },
-    });
-  }, containerRef);
+      });
+    }, containerRef);
 
-  return () => {
-    ctx.revert(); // 🔥 restores DOM & unpins safely
-  };
-}, []);
+    return () => ctx.revert();
+  }, []);
 
+  const translatedTimeline = timelineTranslations[language]?.timeline || [];
 
   return (
     <section ref={containerRef} className="relative h-screen w-full overflow-hidden">
-      {/* Background images */}
+      {/* Backgrounds */}
       {ayurvedaTimeline.map((item, i) => (
         <div
           key={i}
           ref={addBgRef}
-          className="fixed inset-0 bg-cover bg-center z-0 transition-opacity duration-500"
+          className="fixed inset-0 bg-cover bg-center z-0"
           style={{ backgroundImage: `url(${item.bg})` }}
         />
       ))}
       <div className="fixed inset-0 bg-black/50 z-10" />
 
-      {/* Checkpoint bar */}
-      <div className="fixed top-6 left-1/2 -translate-x-1/2 z-20 flex space-x-4">
-        {ayurvedaTimeline.map((item, i) => (
-          <div key={i} className="flex flex-col items-center">
-            <div
-              className={`w-6 h-6 rounded-full transition-colors duration-300 border-2 border-amber-700 ${
-                i <= activeIndex ? "bg-yellow-200" : "bg-gray-400/40"
-              }`}
-            />
-            <span className="text-xs text-white mt-1">{item.year}</span>
-          </div>
-        ))}
-      </div>
-
       {/* Title */}
       <div className="absolute top-32 w-full text-center z-20">
-        <h1 className="text-5xl md:text-6xl font-bold text-white -mt-5 chalk-text">
-          History of Ayurveda
+        <h1 className="text-5xl md:text-6xl font-bold text-white chalk-text">
+          {t("history_of_ayurveda") || "History of Ayurveda"}
         </h1>
       </div>
 
       {/* Timeline */}
-<div className="relative z-30 h-full flex items-center">
-  <div
-    ref={trackRef}
-    className="flex"
-    style={{ width: `${ayurvedaTimeline.length * 100}vw` }}
-  >
-    {ayurvedaTimeline.map((item, i) => (
-      <div key={i} className="timeline-item w-screen flex justify-center mt-10 chalk-text">
-        <div
-          className={`relative max-w-lg p-8 pt-12 rounded-3xl backdrop-blur-xl
-          border border-white/20 transition-all duration-500
-          ${
-            i === activeIndex
-              ? "bg-white/15 scale-100 opacity-100 shadow-xl shadow-yellow-700/10"
-              : "bg-white/5 scale-90 opacity-50"
-          }`}
-        >
-          {/* Year Oval (on border) */}
-          <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-            <div className="px-6 py-1 rounded-full bg-yellow-800 text-white border border-yellow-400 text-sm font-semibold shadow-md">
-              {item.year}
-            </div>
-          </div>
-
-          {/* Title */}
-          <h2 className="text-3xl text-yellow-400 font-semibold mt-2">
-            {item.title}
-          </h2>
-
-          {/* Description */}
-          <p className="text-gray-200 mt-4">
-            {item.desc}
-          </p>
-
-          {/* Metadata */}
-          <p className="text-gray-300 mt-4">
-            <strong className="text-yellow-300">Location:</strong>{" "}
-            {item.location}
-          </p>
-
-          <p className="text-gray-300 mt-1">
-            <strong className="text-yellow-300">Key Figures:</strong>{" "}
-            {item.keyFigures.join(", ")}
-          </p>
-
-          {/* Highlighted Important Section */}
-          <div className="mt-6 p-4 rounded-xl bg-yellow-800 border border-yellow-700/30 backdrop-blur-sm">
-            <p className="text-gray-200 text-sm leading-relaxed">
-              <strong className="text-yellow-300">Significance:</strong>{" "}
-              {item.significance}
-            </p>
-          </div>
+      <div className="relative z-30 h-full flex items-center">
+        <div ref={trackRef} className="flex" style={{ width: `${ayurvedaTimeline.length * 100}vw` }}>
+          {ayurvedaTimeline.map((item, i) => {
+            const translated = translatedTimeline[i] || {};
+            return (
+              <div key={i} className="w-screen flex justify-center mt-10 chalk-text">
+                <div className="max-w-lg p-8 rounded-3xl bg-white/15">
+                  <h2 className="text-3xl text-yellow-400">
+                    {translated.title || item.title}
+                  </h2>
+                  <p className="text-gray-200 mt-4">
+                    {translated.desc || item.desc}
+                  </p>
+                  <p className="text-gray-300 mt-4">
+                    <strong>{t("location") || "Location"}:</strong> {item.location}
+                  </p>
+                  <p className="text-gray-300 mt-1">
+                    <strong>{t("key_figures") || "Key Figures"}:</strong>{" "}
+                    {item.keyFigures.join(", ")}
+                  </p>
+                  <div className="mt-4 p-4 bg-yellow-800 rounded-xl">
+                    <strong>{t("significance") || "Significance"}:</strong>{" "}
+                    {translated.significance || item.significance}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
-    ))}
-  </div>
-</div>
 
-
-      {/* Scroll hint */}
+      {/* Scroll Hint */}
       <div className="absolute bottom-10 w-full text-center text-white/70 z-40">
-        ↓ Scroll to continue
+        ↓ {t("scroll_to_continue") || "Scroll to continue"}
       </div>
     </section>
   );

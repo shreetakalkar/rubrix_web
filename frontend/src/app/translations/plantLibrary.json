@@ -1,0 +1,107 @@
+{
+  "en": {
+    "title": "Plant Library",
+    "loading": "Loading plants...",
+    "searchPlaceholder": "Search plants...",
+    "filters": {
+      "all": "All Types",
+      "medicinal": "Medicinal Use",
+      "ayurvedic": "Ayurvedic Formulation",
+      "food": "Food Recipes"
+    },
+    "bookmark": {
+      "all": "All Plants",
+      "only": "Bookmarked Only"
+    }
+  },
+  "hi": {
+    "title": "पौधों की लाइब्रेरी",
+    "loading": "पौधे लोड हो रहे हैं...",
+    "searchPlaceholder": "पौधे खोजें...",
+    "filters": {
+      "all": "सभी प्रकार",
+      "medicinal": "औषधीय उपयोग",
+      "ayurvedic": "आयुर्वेदिक निर्माण",
+      "food": "खाद्य व्यंजन"
+    },
+    "bookmark": {
+      "all": "सभी पौधे",
+      "only": "केवल बुकमार्क किए गए"
+    }
+  },
+  "mr": {
+    "title": "वनस्पती ग्रंथालय",
+    "loading": "वनस्पती लोड होत आहेत...",
+    "searchPlaceholder": "वनस्पती शोधा...",
+    "filters": {
+      "all": "सर्व प्रकार",
+      "medicinal": "औषधी उपयोग",
+      "ayurvedic": "आयुर्वेदिक सूत्रे",
+      "food": "अन्न पाककृती"
+    },
+    "bookmark": {
+      "all": "सर्व वनस्पती",
+      "only": "फक्त बुकमार्क केलेल्या"
+    }
+  },
+  "gu": {
+    "title": "વનસ્પતિ લાઇબ્રેરી",
+    "loading": "વનસ્પતિઓ લોડ થઈ રહી છે...",
+    "searchPlaceholder": "વનસ્પતિ શોધો...",
+    "filters": {
+      "all": "બધા પ્રકાર",
+      "medicinal": "ઔષધીય ઉપયોગ",
+      "ayurvedic": "આયુર્વેદિક સંયોજન",
+      "food": "ખાદ્ય રેસીપી"
+    },
+    "bookmark": {
+      "all": "બધી વનસ્પતિઓ",
+      "only": "ફક્ત બુકમાર્ક કરેલી"
+    }
+  },
+  "te": {
+    "title": "మొక్కల గ్రంథాలయం",
+    "loading": "మొక్కలు లోడ్ అవుతున్నాయి...",
+    "searchPlaceholder": "మొక్కలను శోధించండి...",
+    "filters": {
+      "all": "అన్ని రకాల",
+      "medicinal": "ఔషధ ఉపయోగం",
+      "ayurvedic": "ఆయుర్వేద సమ్మేళనం",
+      "food": "ఆహార వంటకాలు"
+    },
+    "bookmark": {
+      "all": "అన్ని మొక్కలు",
+      "only": "బుక్‌మార్క్ చేసినవి మాత్రమే"
+    }
+  },
+  "ta": {
+    "title": "மூலிகை நூலகம்",
+    "loading": "மூலிகைகள் ஏற்றப்படுகின்றன...",
+    "searchPlaceholder": "மூலிகைகளைத் தேடுங்கள்...",
+    "filters": {
+      "all": "அனைத்து வகைகள்",
+      "medicinal": "மருத்துவ பயன்பாடு",
+      "ayurvedic": "ஆயுர்வேத தயாரிப்பு",
+      "food": "உணவு சமையல்"
+    },
+    "bookmark": {
+      "all": "அனைத்து மூலிகைகள்",
+      "only": "புக் மார்க் செய்யப்பட்டவை மட்டும்"
+    }
+  },
+  "ur": {
+    "title": "پودوں کی لائبریری",
+    "loading": "پودے لوڈ ہو رہے ہیں...",
+    "searchPlaceholder": "پودے تلاش کریں...",
+    "filters": {
+      "all": "تمام اقسام",
+      "medicinal": "طبی استعمال",
+      "ayurvedic": "آیورویدک ترکیب",
+      "food": "غذائی ترکیبیں"
+    },
+    "bookmark": {
+      "all": "تمام پودے",
+      "only": "صرف بُک مارک شدہ"
+    }
+  }
+}

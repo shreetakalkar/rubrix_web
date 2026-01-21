@@ -1,0 +1,118 @@
+{
+  "en": {
+    "virtual_botanical_garden": "Virtual Botanical Garden",
+    "explore_medicinal_plants": "Explore Medicinal Plants Digitally",
+    "history_of_ayurveda": "History of Ayurveda",
+    "timeline_of_ayurveda": "Timeline of Ayurveda",
+    "explore_plant_library": "Explore Plant Library",
+    "browse_herbal_knowledge": "Browse Herbal Knowledge",
+    "games_and_learning": "Games and Learning",
+    "fun_quizzes_challenges": "Fun Quizzes and Challenges",
+    "botanical_garden": "Botanical Garden",
+    "virtual_greenhouse_tour": "Virtual Greenhouse Tour"
+  },
+
+  "hi": {
+    "virtual_botanical_garden": "आभासी वनस्पति उद्यान",
+    "explore_medicinal_plants": "डिजिटल रूप से औषधीय पौधों का अन्वेषण करें",
+    "history_of_ayurveda": "आयुर्वेद का इतिहास",
+    "timeline_of_ayurveda": "आयुर्वेद की समयरेखा",
+    "explore_plant_library": "पौधों का पुस्तकालय देखें",
+    "browse_herbal_knowledge": "हर्बल ज्ञान ब्राउज़ करें",
+    "games_and_learning": "खेल और सीखना",
+    "fun_quizzes_challenges": "मजेदार क्विज़ और चुनौतियाँ",
+    "botanical_garden": "वनस्पति उद्यान",
+    "virtual_greenhouse_tour": "आभासी ग्रीनहाउस टूर"
+  },
+
+  "mr": {
+    "virtual_botanical_garden": "आभासी वनस्पती उद्यान",
+    "explore_medicinal_plants": "डिजिटल पद्धतीने औषधी वनस्पतींचा शोध घ्या",
+    "history_of_ayurveda": "आयुर्वेदाचा इतिहास",
+    "timeline_of_ayurveda": "आयुर्वेदाची कालरेखा",
+    "explore_plant_library": "वनस्पती ग्रंथालय पहा",
+    "browse_herbal_knowledge": "हर्बल ज्ञान शोधा",
+    "games_and_learning": "खेळ आणि शिकणे",
+    "fun_quizzes_challenges": "मजेदार प्रश्नमंजुषा आणि आव्हाने",
+    "botanical_garden": "वनस्पती उद्यान",
+    "virtual_greenhouse_tour": "आभासी ग्रीनहाउस टूर"
+  },
+
+  "gu": {
+    "virtual_botanical_garden": "આભાસી વનસ્પતિ ઉદ્યાન",
+    "explore_medicinal_plants": "ડિજિટલ રીતે ઔષધીય વનસ્પતિઓ શોધો",
+    "history_of_ayurveda": "આયુર્વેદનો ઇતિહાસ",
+    "timeline_of_ayurveda": "આયુર્વેદની સમયરેખા",
+    "explore_plant_library": "વનસ્પતિ પુસ્તકાલય જુઓ",
+    "browse_herbal_knowledge": "હર્બલ જ્ઞાન શોધો",
+    "games_and_learning": "રમતો અને શીખવું",
+    "fun_quizzes_challenges": "મજા ભરેલા ક્વિઝ અને પડકારો",
+    "botanical_garden": "વનસ્પતિ ઉદ્યાન",
+    "virtual_greenhouse_tour": "આભાસી ગ્રીનહાઉસ પ્રવાસ"
+  },
+
+  "ta": {
+    "virtual_botanical_garden": "மெய்நிகர் தாவரவியல் தோட்டம்",
+    "explore_medicinal_plants": "மருத்துவ தாவரங்களை டிஜிட்டலாக ஆராயுங்கள்",
+    "history_of_ayurveda": "ஆயுர்வேதத்தின் வரலாறு",
+    "timeline_of_ayurveda": "ஆயுர்வேத காலவரிசை",
+    "explore_plant_library": "தாவர நூலகத்தை ஆராயுங்கள்",
+    "browse_herbal_knowledge": "மூலிகை அறிவை உலாவுங்கள்",
+    "games_and_learning": "விளையாட்டுகள் மற்றும் கற்றல்",
+    "fun_quizzes_challenges": "வேடிக்கையான வினாக்கள் மற்றும் சவால்கள்",
+    "botanical_garden": "தாவரவியல் தோட்டம்",
+    "virtual_greenhouse_tour": "மெய்நிகர் கிரீன் ஹவுஸ் சுற்றுலா"
+  },
+
+  "te": {
+    "virtual_botanical_garden": "వర్చువల్ బోటానికల్ గార్డెన్",
+    "explore_medicinal_plants": "డిజిటల్‌గా ఔషధ మొక్కలను అన్వేషించండి",
+    "history_of_ayurveda": "ఆయుర్వేద చరిత్ర",
+    "timeline_of_ayurveda": "ఆయుర్వేద కాలక్రమం",
+    "explore_plant_library": "మొక్కల గ్రంథాలయాన్ని అన్వేషించండి",
+    "browse_herbal_knowledge": "హెర్బల్ జ్ఞానాన్ని బ్రౌజ్ చేయండి",
+    "games_and_learning": "ఆటలు మరియు నేర్చుకోవడం",
+    "fun_quizzes_challenges": "ఆసక్తికరమైన క్విజ్‌లు మరియు సవాళ్లు",
+    "botanical_garden": "బోటానికల్ గార్డెన్",
+    "virtual_greenhouse_tour": "వర్చువల్ గ్రీన్ హౌస్ టూర్"
+  },
+
+  "kn": {
+    "virtual_botanical_garden": "ವರ್ಚುವಲ್ ಸಸ್ಯ ಉದ್ಯಾನ",
+    "explore_medicinal_plants": "ಔಷಧೀಯ ಸಸ್ಯಗಳನ್ನು ಡಿಜಿಟಲ್ ರೀತಿಯಲ್ಲಿ ಅನ್ವೇಷಿಸಿ",
+    "history_of_ayurveda": "ಆಯುರ್ವೇದದ ಇತಿಹಾಸ",
+    "timeline_of_ayurveda": "ಆಯುರ್ವೇದ ಕಾಲರೇಖೆ",
+    "explore_plant_library": "ಸಸ್ಯ ಗ್ರಂಥಾಲಯವನ್ನು ಅನ್ವೇಷಿಸಿ",
+    "browse_herbal_knowledge": "ಹರ್ಬಲ್ ಜ್ಞಾನವನ್ನು ವೀಕ್ಷಿಸಿ",
+    "games_and_learning": "ಆಟಗಳು ಮತ್ತು ಕಲಿಕೆ",
+    "fun_quizzes_challenges": "ಮನರಂಜನೆಯ ಪ್ರಶ್ನೋತ್ತರಗಳು ಮತ್ತು ಸವಾಲುಗಳು",
+    "botanical_garden": "ಸಸ್ಯ ಉದ್ಯಾನ",
+    "virtual_greenhouse_tour": "ವರ್ಚುವಲ್ ಗ್ರೀನ್ ಹೌಸ್ ಪ್ರವಾಸ"
+  },
+
+  "bn": {
+    "virtual_botanical_garden": "ভার্চুয়াল উদ্ভিদ উদ্যান",
+    "explore_medicinal_plants": "ডিজিটালভাবে ঔষধি উদ্ভিদ অন্বেষণ করুন",
+    "history_of_ayurveda": "আয়ুর্বেদের ইতিহাস",
+    "timeline_of_ayurveda": "আয়ুর্বেদের সময়রেখা",
+    "explore_plant_library": "উদ্ভিদ গ্রন্থাগার অন্বেষণ করুন",
+    "browse_herbal_knowledge": "হার্বাল জ্ঞান ব্রাউজ করুন",
+    "games_and_learning": "খেলা এবং শেখা",
+    "fun_quizzes_challenges": "মজার কুইজ এবং চ্যালেঞ্জ",
+    "botanical_garden": "উদ্ভিদ উদ্যান",
+    "virtual_greenhouse_tour": "ভার্চুয়াল গ্রিনহাউস ভ্রমণ"
+  },
+
+  "ur": {
+    "virtual_botanical_garden": "ورچوئل نباتاتی باغ",
+    "explore_medicinal_plants": "دواؤں کے پودوں کو ڈیجیٹل طور پر دریافت کریں",
+    "history_of_ayurveda": "آیوروید کی تاریخ",
+    "timeline_of_ayurveda": "آیوروید کی زمانی ترتیب",
+    "explore_plant_library": "پودوں کی لائبریری دیکھیں",
+    "browse_herbal_knowledge": "جڑی بوٹیوں کا علم براؤز کریں",
+    "games_and_learning": "کھیل اور سیکھنا",
+    "fun_quizzes_challenges": "مزے دار کوئزز اور چیلنجز",
+    "botanical_garden": "نباتاتی باغ",
+    "virtual_greenhouse_tour": "ورچوئل گرین ہاؤس ٹور"
+  }
+}

@@ -1,0 +1,279 @@
+{
+  "en": {
+    "history_of_ayurveda": "History of Ayurveda",
+    "scroll_to_continue": "Scroll to continue",
+    "location": "Location",
+    "key_figures": "Key Figures",
+    "significance": "Significance",
+    "timeline": [
+      {
+        "title": "Origins in the Vedas",
+        "desc": "Ayurveda emerged from the Atharva Veda focusing on balance of body and mind.",
+        "significance": "Foundation of holistic health and Dosha theory."
+      },
+      {
+        "title": "Charaka Samhita",
+        "desc": "Systematic documentation of internal medicine and ethics.",
+        "significance": "Scientific diagnosis and treatment principles."
+      },
+      {
+        "title": "Sushruta Samhita",
+        "desc": "Advanced surgical and anatomical knowledge.",
+        "significance": "Foundation of surgical science."
+      },
+      {
+        "title": "Golden Age",
+        "desc": "Ayurveda flourished in universities and texts.",
+        "significance": "Established Ayurveda as a formal medical science."
+      },
+      {
+        "title": "Modern Era",
+        "desc": "Global recognition and wellness integration.",
+        "significance": "Traditional wisdom meets modern science."
+      }
+    ]
+  },
+
+  "hi": {
+    "history_of_ayurveda": "आयुर्वेद का इतिहास",
+    "scroll_to_continue": "जारी रखने के लिए स्क्रॉल करें",
+    "location": "स्थान",
+    "key_figures": "मुख्य व्यक्ति",
+    "significance": "महत्व",
+    "timeline": [
+      {
+        "title": "वेदों में उत्पत्ति",
+        "desc": "आयुर्वेद की उत्पत्ति अथर्ववेद से हुई।",
+        "significance": "दोष और समग्र स्वास्थ्य की नींव।"
+      },
+      {
+        "title": "चरक संहिता",
+        "desc": "आंतरिक चिकित्सा का व्यवस्थित वर्णन।",
+        "significance": "वैज्ञानिक उपचार प्रणाली।"
+      },
+      {
+        "title": "सुश्रुत संहिता",
+        "desc": "शल्य चिकित्सा और शरीर रचना।",
+        "significance": "सर्जरी की नींव।"
+      },
+      {
+        "title": "स्वर्ण युग",
+        "desc": "विश्वविद्यालयों में आयुर्वेद का विकास।",
+        "significance": "एक संगठित चिकित्सा विज्ञान।"
+      },
+      {
+        "title": "आधुनिक युग",
+        "desc": "वैश्विक पहचान और स्वीकार्यता।",
+        "significance": "आधुनिक जीवन में आयुर्वेद।"
+      }
+    ]
+  },
+
+  "mr": {
+    "history_of_ayurveda": "आयुर्वेदाचा इतिहास",
+    "scroll_to_continue": "पुढे जाण्यासाठी स्क्रोल करा",
+    "location": "स्थान",
+    "key_figures": "महत्त्वाच्या व्यक्ती",
+    "significance": "महत्त्व",
+    "timeline": [
+      {
+        "title": "वेदांमधील उगम",
+        "desc": "आयुर्वेदाची मुळे अथर्ववेदात आहेत.",
+        "significance": "समग्र आरोग्याचा पाया."
+      },
+      {
+        "title": "चरक संहिता",
+        "desc": "औषधशास्त्राचे व्यवस्थित संकलन.",
+        "significance": "रोगनिदान पद्धती."
+      },
+      {
+        "title": "सुश्रुत संहिता",
+        "desc": "शस्त्रक्रिया आणि शरीररचना.",
+        "significance": "शस्त्रक्रियेची सुरुवात."
+      },
+      {
+        "title": "सुवर्णकाळ",
+        "desc": "आयुर्वेदाचा विस्तार.",
+        "significance": "शास्त्र म्हणून स्थापना."
+      },
+      {
+        "title": "आधुनिक काळ",
+        "desc": "जागतिक स्तरावर स्वीकार.",
+        "significance": "परंपरा आणि विज्ञान."
+      }
+    ]
+  },
+"gu": {
+  "history_of_ayurveda": "આયુર્વેદનો ઇતિહાસ",
+  "scroll_to_continue": "આગળ વધવા માટે સ્ક્રોલ કરો",
+  "location": "સ્થાન",
+  "key_figures": "મુખ્ય વ્યક્તિત્વો",
+  "significance": "મહત્વ",
+  "timeline": [
+    {
+      "title": "વેદોમાં ઉત્પત્તિ",
+      "desc": "આયુર્વેદની ઉત્પત્તિ અથર્વવેદમાંથી થઈ હતી.",
+      "significance": "સમગ્ર આરોગ્ય અને દોષ સિદ્ધાંતની પાયો."
+    },
+    {
+      "title": "ચરક સંહિતા",
+      "desc": "આંતરિક ચિકિત્સાનું વ્યવસ્થિત દસ્તાવેજીકરણ.",
+      "significance": "વૈજ્ઞાનિક નિદાન અને સારવાર પદ્ધતિઓ."
+    },
+    {
+      "title": "સુશ્રુત સંહિતા",
+      "desc": "શસ્ત્રક્રિયા અને માનવ શરીરરચનાનું વિકસિત જ્ઞાન.",
+      "significance": "શસ્ત્રક્રિયા વિજ્ઞાનની પાયારચના."
+    },
+    {
+      "title": "સુવર્ણ યુગ",
+      "desc": "વિશ્વવિદ્યાલયોમાં આયુર્વેદનો વિકાસ થયો.",
+      "significance": "આયુર્વેદને ઔપચારિક વૈદકીય વિજ્ઞાન તરીકે સ્થાપિત કર્યું."
+    },
+    {
+      "title": "આધુનિક યુગ",
+      "desc": "વિશ્વભરમાં આયુર્વેદની માન્યતા અને સ્વીકાર.",
+      "significance": "પરંપરાગત જ્ઞાન અને આધુનિક વિજ્ઞાનનું સંયોજન."
+    }
+  ]
+},
+  "ta": {
+    "history_of_ayurveda": "ஆயுர்வேதத்தின் வரலாறு",
+    "scroll_to_continue": "தொடர ஸ்க்ரோல் செய்யவும்",
+    "location": "இடம்",
+    "key_figures": "முக்கிய நபர்கள்",
+    "significance": "முக்கியத்துவம்",
+    "timeline": [
+      {
+        "title": "வேதங்களில் தோற்றம்",
+        "desc": "ஆயுர்வேதம் அதர்வ வேதத்தில் இருந்து உருவானது.",
+        "significance": "முழுமையான ஆரோக்கியத்தின் அடிப்படை."
+      },
+      {
+        "title": "சரக சம்ஹிதை",
+        "desc": "உள் மருத்துவ அறிவு தொகுக்கப்பட்டது.",
+        "significance": "மருத்துவ முறைகள்."
+      },
+      {
+        "title": "சுஷ்ருத சம்ஹிதை",
+        "desc": "அறுவை சிகிச்சை வளர்ச்சி.",
+        "significance": "அறுவை அறிவின் அடித்தளம்."
+      },
+      {
+        "title": "தங்க காலம்",
+        "desc": "பல்கலைக்கழகங்களில் ஆயுர்வேதம்.",
+        "significance": "மருத்துவ அறிவாக வளர்ச்சி."
+      },
+      {
+        "title": "நவீன காலம்",
+        "desc": "உலகளாவிய அங்கீகாரம்.",
+        "significance": "நவீன வாழ்வில் பயன்பாடு."
+      }
+    ]
+  },
+
+  "te": {
+    "history_of_ayurveda": "ఆయుర్వేద చరిత్ర",
+    "scroll_to_continue": "కొనసాగడానికి స్క్రోల్ చేయండి",
+    "location": "స్థలం",
+    "key_figures": "ప్రధాన వ్యక్తులు",
+    "significance": "ప్రాముఖ్యత",
+    "timeline": [
+      {
+        "title": "వేదాలలో ప్రారంభం",
+        "desc": "ఆయుర్వేదం అథర్వవేదం నుండి వచ్చింది.",
+        "significance": "సంపూర్ణ ఆరోగ్యానికి పునాది."
+      },
+      {
+        "title": "చరక సంహిత",
+        "desc": "అంతర్గత వైద్య విజ్ఞానం.",
+        "significance": "వ్యాధి నిర్ధారణ."
+      },
+      {
+        "title": "సుశ్రుత సంహిత",
+        "desc": "శస్త్రచికిత్స అభివృద్ధి.",
+        "significance": "శస్త్రచికిత్స పునాది."
+      },
+      {
+        "title": "సువర్ణ యుగం",
+        "desc": "ఆయుర్వేద విస్తరణ.",
+        "significance": "వైద్య శాస్త్రంగా స్థాపన."
+      },
+      {
+        "title": "ఆధునిక యుగం",
+        "desc": "ప్రపంచవ్యాప్తంగా స్వీకారం.",
+        "significance": "ఆధునిక జీవనంలో వినియోగం."
+      }
+    ]
+  },
+
+  "bn": {
+    "history_of_ayurveda": "আয়ুর্বেদের ইতিহাস",
+    "scroll_to_continue": "চালিয়ে যেতে স্ক্রোল করুন",
+    "location": "স্থান",
+    "key_figures": "প্রধান ব্যক্তিত্ব",
+    "significance": "গুরুত্ব",
+    "timeline": [
+      {
+        "title": "বেদে উৎপত্তি",
+        "desc": "আয়ুর্বেদের উৎপত্তি অথর্ববেদে।",
+        "significance": "সমগ্র স্বাস্থ্যের ভিত্তি।"
+      },
+      {
+        "title": "চরক সংহিতা",
+        "desc": "চিকিৎসা বিজ্ঞানের সংকলন।",
+        "significance": "রোগ নির্ণয়।"
+      },
+      {
+        "title": "সুশ্রুত সংহিতা",
+        "desc": "শল্য চিকিৎসা উন্নয়ন।",
+        "significance": "শল্য বিজ্ঞানের ভিত্তি।"
+      },
+      {
+        "title": "স্বর্ণযুগ",
+        "desc": "আয়ুর্বেদের বিকাশ।",
+        "significance": "চিকিৎসা শাস্ত্র।"
+      },
+      {
+        "title": "আধুনিক যুগ",
+        "desc": "বিশ্বব্যাপী গ্রহণ।",
+        "significance": "আধুনিক ব্যবহার।"
+      }
+    ]
+  },
+
+  "ur": {
+    "history_of_ayurveda": "آیوروید کی تاریخ",
+    "scroll_to_continue": "جاری رکھنے کے لیے اسکرول کریں",
+    "location": "مقام",
+    "key_figures": "اہم شخصیات",
+    "significance": "اہمیت",
+    "timeline": [
+      {
+        "title": "ویدوں میں آغاز",
+        "desc": "آیوروید کی ابتدا اتھروید سے ہوئی۔",
+        "significance": "جامع صحت کی بنیاد۔"
+      },
+      {
+        "title": "چرک سمہتا",
+        "desc": "اندرونی طب کی دستاویزات۔",
+        "significance": "تشخیصی اصول۔"
+      },
+      {
+        "title": "سشروت سمہتا",
+        "desc": "جراحی علم کی ترقی۔",
+        "significance": "جراحی سائنس کی بنیاد۔"
+      },
+      {
+        "title": "سنہری دور",
+        "desc": "آیوروید کی ترقی۔",
+        "significance": "مکمل طبی نظام۔"
+      },
+      {
+        "title": "جدید دور",
+        "desc": "عالمی سطح پر قبولیت۔",
+        "significance": "روایتی اور جدید امتزاج۔"
+      }
+    ]
+  }
+}

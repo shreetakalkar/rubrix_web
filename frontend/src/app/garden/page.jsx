@@ -1,19 +1,28 @@
 "use client";
+
 import { useEffect, useState } from "react";
+import { useLanguage } from "@/src/app/context/LanguageContext";
+import langData from "@/src/app/translations/Garden";
 
 export default function GamesPage() {
   const [shelf, setShelf] = useState([]);
+  const { language, loadTranslations, t } = useLanguage();
+
+  useEffect(() => {
+    loadTranslations(langData);
+  }, [loadTranslations]);
 
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("plantShelf")) || [];
     setShelf(stored);
   }, []);
 
-  // Function to remove a plant by index
+  const pageLang = langData[language] || langData.en;
+
   const removePlant = (index) => {
-    const updated = shelf.filter((_, i) => i !== index); // remove the plant
-    setShelf(updated); // update state
-    localStorage.setItem("plantShelf", JSON.stringify(updated)); // update localStorage
+    const updated = shelf.filter((_, i) => i !== index);
+    setShelf(updated);
+    localStorage.setItem("plantShelf", JSON.stringify(updated));
   };
 
   return (
@@ -30,13 +39,12 @@ export default function GamesPage() {
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: "url('/stand.png')" }}
       />
-
       <div className="absolute inset-0 bg-black/20" />
 
       {/* HEADING */}
       <div className="relative z-10 pt-24 text-center">
         <h1 className="text-5xl md:text-6xl font-bold chalk-text text-white drop-shadow-lg">
-          Your Botanical Garden
+          {t("title") || pageLang.title}
         </h1>
       </div>
 
@@ -53,9 +61,11 @@ export default function GamesPage() {
                 className="h-45 mx-auto drop-shadow-lg"
                 alt={plant.name}
               />
-              <h3 className="text-xl text-green-300 font-bold">{plant.name}</h3>
 
-              {/* REMOVE BUTTON */}
+              <h3 className="text-xl text-green-300 font-bold">
+                {plant.name}
+              </h3>
+
               <button
                 onClick={() => removePlant(i)}
                 className="absolute top-2 right-2 text-red-500 font-bold hover:text-red-400"
@@ -67,7 +77,7 @@ export default function GamesPage() {
 
           {shelf.length === 0 && (
             <p className="text-white text-lg col-span-3 text-center">
-              🌱 No plants built yet
+              {t("empty") || pageLang.empty}
             </p>
           )}
         </div>

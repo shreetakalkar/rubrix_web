@@ -1,0 +1,184 @@
+{
+  "en": {
+    "heading": "Games & More",
+    "subheading": "Fun learning with plants",
+    "games": [
+      {
+        "title": "Herbal Quiz",
+        "subtitle": "Test your knowledge",
+        "buttonText": "Start Quiz"
+      },
+      {
+        "title": "Plant Match",
+        "subtitle": "Match plants with uses",
+        "buttonText": "Play Game"
+      },
+      {
+        "title": "Build a Tree",
+        "subtitle": "Create a medicinal tree",
+        "buttonText": "Start Building"
+      },
+      {
+        "title": "Thematic Tours",
+        "subtitle": "Immunity & Rasayna Tour",
+        "buttonText": "Start Tour"
+      }
+    ]
+  },
+  "hi": {
+    "heading": "गेम और अधिक",
+    "subheading": "पौधों के साथ मज़ेदार सीखना",
+    "games": [
+      {
+        "title": "हर्बल क्विज़",
+        "subtitle": "अपनी जानकारी जांचें",
+        "buttonText": "क्विज़ शुरू करें"
+      },
+      {
+        "title": "प्लांट मैच",
+        "subtitle": "उपयोगों के साथ पौधों को मिलाएं",
+        "buttonText": "खेल शुरू करें"
+      },
+      {
+        "title": "एक पेड़ बनाएं",
+        "subtitle": "एक औषधीय पेड़ बनाएं",
+        "buttonText": "निर्माण शुरू करें"
+      },
+      {
+        "title": "थीमैटिक टूर",
+        "subtitle": "इम्यूनिटी और रसायना टूर",
+        "buttonText": "टूर शुरू करें"
+      }
+    ]
+  },
+  "mr": {
+    "heading": "गेम्स आणि अधिक",
+    "subheading": "वनस्पतींसह मजेदार शिकणे",
+    "games": [
+      {
+        "title": "हर्बल क्विझ",
+        "subtitle": "तुमचे ज्ञान तपासा",
+        "buttonText": "क्विझ सुरू करा"
+      },
+      {
+        "title": "प्लांट मॅच",
+        "subtitle": "वापरांसह वनस्पती जुळवा",
+        "buttonText": "खेळ सुरू करा"
+      },
+      {
+        "title": "एक झाड तयार करा",
+        "subtitle": "औषधीय झाड तयार करा",
+        "buttonText": "निर्माण सुरू करा"
+      },
+      {
+        "title": "थीमॅटिक टूर",
+        "subtitle": "इम्युनिटी आणि रसायना टूर",
+        "buttonText": "टूर सुरू करा"
+      }
+    ]
+  },
+  "ta": {
+    "heading": "விளையாட்டுகள் மற்றும் மற்றவை",
+    "subheading": "செடிகள் மூலம் வேடிக்கை கற்றல்",
+    "games": [
+      {
+        "title": "ஹெர்பல் க்விஸ்",
+        "subtitle": "உங்கள் அறிவை சோதிக்கவும்",
+        "buttonText": "க்விஸ் தொடங்கு"
+      },
+      {
+        "title": "மரம் பொருத்தம்",
+        "subtitle": "பயன்பாடுகளுடன் செடிகளை பொருத்தவும்",
+        "buttonText": "விளையாடு"
+      },
+      {
+        "title": "மரத்தை கட்டவும்",
+        "subtitle": "ஒரு மருத்துவ மரத்தை உருவாக்கவும்",
+        "buttonText": "கட்ட தொடங்கு"
+      },
+      {
+        "title": "தீமைடிக் சுற்றுலா",
+        "subtitle": "மூட்டரித்தன்மை மற்றும் ரசாயண சுற்றுலா",
+        "buttonText": "சுற்றுலா தொடங்கு"
+      }
+    ]
+  },
+  "te": {
+    "heading": "గేమ్స్ & మరిన్ని",
+    "subheading": "చెట్లు ద్వారా సరదా నేర్చుకోవడం",
+    "games": [
+      {
+        "title": "హెర్బల్ క్విజ్",
+        "subtitle": "మీ జ్ఞానాన్ని పరీక్షించండి",
+        "buttonText": "క్విజ్ ప్రారంభించండి"
+      },
+      {
+        "title": "ప్లాంట్ మ్యాచ్",
+        "subtitle": "వాడుకలతో చెట్లను సరిపో చేయండి",
+        "buttonText": "గేమ్ ఆడండి"
+      },
+      {
+        "title": "మరాన్ని నిర్మించండి",
+        "subtitle": "ఒక ఔషధ చెట్టు సృష్టించండి",
+        "buttonText": "నిర్మాణం ప్రారంభించండి"
+      },
+      {
+        "title": "థీమాటిక్ టూర్స్",
+        "subtitle": "ఇమ్యూనిటీ & రసాయన టూర్",
+        "buttonText": "టూర్ ప్రారంభించండి"
+      }
+    ]
+  },
+  "gu": {
+    "heading": "ગેમ્સ અને વધુ",
+    "subheading": "પળિયાઓ સાથે મજા કરવી શીખવું",
+    "games": [
+      {
+        "title": "હર્બલ ક્વિઝ",
+        "subtitle": "તમારી જ્ઞાન તપાસો",
+        "buttonText": "ક્વિઝ શરૂ કરો"
+      },
+      {
+        "title": "પ્લાન્ટ મેચ",
+        "subtitle": "ઉપયોગો સાથે પળિયાઓ મેળવો",
+        "buttonText": "રમવો"
+      },
+      {
+        "title": "ટ્રી બનાવો",
+        "subtitle": "એક ઔષધિ વૃક્ષ બનાવો",
+        "buttonText": "બનાવવું શરૂ કરો"
+      },
+      {
+        "title": "થેમેટિક ટૂર્સ",
+        "subtitle": "ઇમ્યુનિટી & રસાયણ ટૂર",
+        "buttonText": "ટૂર શરૂ કરો"
+      }
+    ]
+  },
+  "ur": {
+    "heading": "گیمز اور مزید",
+    "subheading": "پودوں کے ساتھ مزے سے سیکھیں",
+    "games": [
+      {
+        "title": "ہربل کوئز",
+        "subtitle": "اپنا علم آزمائیں",
+        "buttonText": "کوئز شروع کریں"
+      },
+      {
+        "title": "پلانٹ میچ",
+        "subtitle": "پودوں کو استعمال کے ساتھ جوڑیں",
+        "buttonText": "گیم کھیلیں"
+      },
+      {
+        "title": "درخت بنائیں",
+        "subtitle": "ایک طبی درخت بنائیں",
+        "buttonText": "تعمیر شروع کریں"
+      },
+      {
+        "title": "تھی میٹک ٹورز",
+        "subtitle": "امینیٹی & ریساینا ٹور",
+        "buttonText": "ٹور شروع کریں"
+      }
+    ]
+  }
+}
