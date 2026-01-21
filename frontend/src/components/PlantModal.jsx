@@ -6,6 +6,12 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import PlantQRCode from "@/src/components/plantStudy/PlantQrCode";
 import { GiHerb } from "react-icons/gi";
+import Plant3DModel from "./Plant3DModal";
+import {
+  PLANT_3D_MODELS,
+  normalizePlantKey,
+} from "@/src/lib/plant3dMap";
+
 
 /* ------------------ Dynamic Imports ------------------ */
 
@@ -49,6 +55,7 @@ function ComparePlantSelector({ plants, onClose, onConfirm }) {
       setSelected((prev) => [...prev, plant]);
     }
   };
+
 
   return (
     <div className="fixed inset-0 z-[70] bg-black/70 backdrop-blur-sm flex items-center justify-center">
@@ -124,6 +131,10 @@ export default function PlantModal({
   const [lessonCompleted, setLessonCompleted] = useState(false);
   const [showCompletionModal, setShowCompletionModal] = useState(false);
 
+const plantKey = normalizePlantKey(plant.plant_name);
+const modelSrc = PLANT_3D_MODELS[plantKey];
+
+
   /* Lock background scroll for main modal only */
   useEffect(() => {
     if (!isComparison) document.body.style.overflow = "hidden";
@@ -195,8 +206,14 @@ export default function PlantModal({
   /* ------------------ Inner Components ------------------ */
 
   function HeaderSection() {
-    return (
-      <div className="flex gap-6 flex-col sm:flex-row">
+  const plantKey = normalizePlantKey(plant.plant_name);
+  const modelSrc = PLANT_3D_MODELS[plantKey];
+
+  return (
+    <div className="flex gap-6 flex-col sm:flex-row">
+      {modelSrc ? (
+        <Plant3DModel src={modelSrc} />
+      ) : (
         <Image
           src={plant.photos?.[0] || "/placeholder.png"}
           alt={plant.plant_name}
@@ -205,69 +222,72 @@ export default function PlantModal({
           className="rounded-xl object-cover shadow-lg"
           unoptimized
         />
+      )}
 
-        <div className="flex-1">
-          <h1 className="text-3xl font-bold text-green-900">
-            {plant.plant_name}
-          </h1>
+      <div className="flex-1">
+        <h1 className="text-3xl font-bold text-green-900">
+          {plant.plant_name}
+        </h1>
 
-          {lessonCompleted && (
-            <span className="inline-block mt-2 rounded-full bg-green-700 px-3 py-1 text-xs text-white">
-              Lesson Completed
-            </span>
+        {lessonCompleted && (
+          <span className="inline-block mt-2 rounded-full bg-green-700 px-3 py-1 text-xs text-white">
+            Lesson Completed
+          </span>
+        )}
+
+        <p className="mt-1 text-green-800">{plant.scientific_name}</p>
+
+        <div className="mt-4 flex gap-3 flex-wrap">
+          <button
+            onClick={speakPlantInfo}
+            className={`rounded-full px-4 py-2 text-sm text-white ${
+              isSpeaking ? "bg-orange-500" : "bg-green-700"
+            }`}
+          >
+            {isSpeaking ? "⏸ Pause" : "▶ Listen"}
+          </button>
+
+          <button
+            onClick={() => setShowTimeline(true)}
+            className="rounded-full px-4 py-2 text-sm bg-blue-400 text-white"
+          >
+            🕰 Discovery Timeline
+          </button>
+
+          <button
+            onClick={() => setShowGrowthTimeline(true)}
+            className="rounded-full px-4 py-2 text-sm bg-emerald-700 text-white"
+          >
+            🌱 Growth Timeline
+          </button>
+
+          {plant.video && (
+            <a
+              href={plant.video}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full px-4 py-2 text-sm bg-red-600 text-white"
+            >
+              ▶ YouTube
+            </a>
           )}
 
-          <p className="mt-1 text-green-800">{plant.scientific_name}</p>
-
-          <div className="mt-4 flex gap-3 flex-wrap">
+          {!isComparison && (
             <button
-              onClick={speakPlantInfo}
-              className={`rounded-full px-4 py-2 text-sm text-white ${isSpeaking ? "bg-orange-500" : "bg-green-700"
-                }`}
+              onClick={() => setShowCompareSelector(true)}
+              className="rounded-full h-10 px-4 py-2 text-sm bg-amber-700 text-white"
             >
-              {isSpeaking ? "⏸ Pause" : "▶ Listen"}
+              🔍 Compare Plants
             </button>
+          )}
 
-            <button
-              onClick={() => setShowTimeline(true)}
-              className="rounded-full px-4 py-2 text-sm bg-blue-400 text-white"
-            >
-              🕰 Discovery Timeline
-            </button>
-
-            <button
-              onClick={() => setShowGrowthTimeline(true)}
-              className="rounded-full px-4 py-2 text-sm bg-emerald-700 text-white"
-            >
-              🌱 Growth Timeline
-            </button>
-
-            {plant.video && (
-              <a
-                href={plant.video}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full px-4 py-2 text-sm bg-red-600 text-white"
-              >
-                ▶ YouTube
-              </a>
-            )}
-
-            {!isComparison && (
-              <button
-                onClick={() => setShowCompareSelector(true)}
-                className="rounded-full h-10 px-4 py-2 text-sm bg-amber-700 text-white"
-              >
-                🔍 Compare Plants
-              </button>
-            )}
-
-            <PlantQRCode plantName={plant.plant_name} />
-          </div>
+          <PlantQRCode plantName={plant.plant_name}/>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
+}
+
 
   function InfoTable() {
     return (

@@ -12,8 +12,8 @@ export default function PlantQRCode({ plantName }) {
         canvasRef.current,
         plantName,
         {
-          width: 150,
-          margin: 2,
+          width: 100,
+          margin: 1,
           color: {
             dark: "#166534", 
             light: "#FFFFFF",
@@ -27,7 +27,7 @@ export default function PlantQRCode({ plantName }) {
   }, [plantName]);
 
   return (
-    <div className="flex flex-col items-center gap-2 p-4 bg-white/40 rounded-lg">
+    <div className="flex flex-col items-center gap-2 p-4 bg-white/30 rounded-lg">
       <canvas ref={canvasRef} className="rounded-lg shadow-md" />
       <p className="text-xs text-green-800 font-medium">Scan to share</p>
     </div>
